@@ -5,10 +5,15 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class InicioSesionController implements Initializable{
 
@@ -28,7 +33,18 @@ public class InicioSesionController implements Initializable{
     private void cambiarEscena(ActionEvent event) throws IOException {
         App.setRoot("nuevoPaciente");
     }
-
+    
+    @FXML
+    private void crearNuevaCuenta(MouseEvent event) throws IOException{ 
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevoPaciente.fxml"));
+        Parent root = fxmlLoader.load();
+        Scene scene = new Scene(root);
+        
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+        
+    }
 
 
 }

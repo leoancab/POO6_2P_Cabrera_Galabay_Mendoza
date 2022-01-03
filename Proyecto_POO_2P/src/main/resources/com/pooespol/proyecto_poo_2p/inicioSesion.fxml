@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" spacing="50.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pooespol.proyecto_poo_2p.InicioSesionController">
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="50.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pooespol.proyecto_poo_2p.InicioSesionController">
    <children>
       <HBox alignment="CENTER" prefHeight="107.0" prefWidth="560.0" spacing="20.0">
          <children>
@@ -67,7 +67,7 @@
                   <Font name="Arial" size="14.0" />
                </font>
             </Button>
-            <Label text="Crear nueva cuenta" textFill="#5888ee">
+            <Label onMouseClicked="#crearNuevaCuenta" text="Crear nueva cuenta" textFill="#5888ee">
                <font>
                   <Font size="14.0" />
                </font>
