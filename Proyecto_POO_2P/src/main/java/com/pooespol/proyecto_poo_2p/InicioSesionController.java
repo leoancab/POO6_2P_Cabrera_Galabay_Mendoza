@@ -30,13 +30,8 @@ public class InicioSesionController implements Initializable{
     }
 
     @FXML
-    private void cambiarEscena(ActionEvent event) throws IOException {
-        App.setRoot("nuevoPaciente");
-    }
-    
-    @FXML
     private void crearNuevaCuenta(MouseEvent event) throws IOException{ 
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevoPaciente.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(VithasLabsApp.class.getResource("nuevoPaciente.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
         
