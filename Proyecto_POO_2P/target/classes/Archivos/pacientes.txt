@@ -1,6 +1,3 @@
-villajake,099912923,Jake,Villa,19-01-2001,Masculino,Guayaquil,villa@espol.edu.ec,0912312
-villajake,099912923,Jake,Villa,19-01-2001,Masculino,Guayaquil,villa@espol.edu.ec,0912312
-ciaaa,099291391,dqdWQD,jnolnkcwqf,05-01-2022,Masculino,wdqwdwq,qwdqwdqw,qwdqwdwq
-cg,099291231,C,G,05-01-2022,Masculino,Guayaquil,cg@espol.edu.ec,0929912
-vica,0939193,Carlos,Villa,04-01-2022,Masculino,Guayaquil,vica@espol.edu.ec,09192313
-qohwqoid,'030103,9230i1209321,nnoSFC,07-01-2022,Masculino,DDD1D,QDQWDQD,onono
+cgalabay,0998284823,Carlos,Galabay,7/03/2001,Masculino,Guayaquil,cgalabay@espol.edu.ec,09718282
+leoancab,0973849423,Leonardo,Cabrera,7/01/2001,Masculino,Guayaquil,leoancab@espol.edu.ec,04222312
+villajake,099912923,Jake,Villa,19/01/2001,Masculino,Guayaquil,villa@espol.edu.ec,0912312

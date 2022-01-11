@@ -5,7 +5,9 @@
  */
 package com.pooespol.proyecto_poo_2p;
 
-import static com.pooespol.proyecto_poo_2p.ArchivoRW.escribir;
+
+import com.pooespol.proyecto_poo_2p.modelo.ArchivoRW;
+
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -125,7 +127,7 @@ public class NuevoPacienteController extends ArchivoRW implements Initializable 
             
         } else {
             //Damos formato al label por medio de la programación.
-            l_mensaje.setText("Usuario registrado.");
+            l_mensaje.setText("Usuario registrado");
             l_mensaje.setStyle("-fx-text-fill: #5888ee");
             
             /*
@@ -137,7 +139,7 @@ public class NuevoPacienteController extends ArchivoRW implements Initializable 
             String cedula = txt_Cedula.getText();
             String nombres = txt_Nombres.getText();
             String apellidos = txt_Apellidos.getText();
-            String fecha = datePicker.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            String fecha = datePicker.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
             //RadioButton op = (RadioButton) genero.getSelectedToggle();
             String gender = elegido.getText();
             String ciudad = txt_Ciudad.getText();

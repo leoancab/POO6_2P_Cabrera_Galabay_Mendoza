@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="50.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pooespol.proyecto_poo_2p.InicioSesionController">
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="20.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pooespol.proyecto_poo_2p.InicioSesionController">
    <children>
       <HBox alignment="CENTER" prefHeight="107.0" prefWidth="560.0" spacing="20.0">
          <children>
@@ -31,7 +31,7 @@
             </Label>
          </children>
       </HBox>
-      <GridPane alignment="CENTER" hgap="20.0" prefHeight="135.0" prefWidth="560.0" vgap="20.0">
+      <GridPane alignment="CENTER" hgap="20.0" prefHeight="136.0" prefWidth="580.0" vgap="20.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="274.0" minWidth="10.0" prefWidth="65.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="370.0" minWidth="10.0" prefWidth="195.0" />
@@ -61,14 +61,22 @@
             <Insets left="150.0" right="150.0" />
          </padding>
       </GridPane>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="40.0">
+      <VBox alignment="TOP_CENTER" prefHeight="121.0" prefWidth="580.0" spacing="10.0">
          <children>
-            <Button fx:id="btn_IniciarSesion" prefHeight="35.0" prefWidth="110.0" style="-fx-background-color: #4673db; -fx-text-fill: white;" text="Iniciar Sesión">
+            <Label fx:id="l_mensaje" />
+            <Button fx:id="btn_IniciarSesion" onAction="#iniciarSesion" prefHeight="35.0" prefWidth="110.0" style="-fx-background-color: #4673db; -fx-text-fill: white;" text="Iniciar Sesión">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Label onMouseClicked="#crearNuevaCuenta" text="Crear nueva cuenta" textFill="#5888ee">
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" prefHeight="100.0" prefWidth="580.0" spacing="40.0">
+         <children>
+            <Label onMouseClicked="#crearNuevaCuenta" prefHeight="64.0" prefWidth="123.0" text="Crear nueva cuenta" textFill="#5888ee">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>

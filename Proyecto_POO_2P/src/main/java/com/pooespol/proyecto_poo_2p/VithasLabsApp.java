@@ -1,20 +1,25 @@
 package com.pooespol.proyecto_poo_2p;
 
+import static com.pooespol.proyecto_poo_2p.modelo.ArchivoRW.generarPacientes;
+import static com.pooespol.proyecto_poo_2p.modelo.ArchivoRW.generarUsuarios;
+import com.pooespol.proyecto_poo_2p.modelo.usuarios.Paciente;
+import com.pooespol.proyecto_poo_2p.modelo.usuarios.Usuario;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
+import java.util.ArrayList;
 import static javafx.application.Application.launch;
-
 
 public class VithasLabsApp extends Application {
 
     private static Scene scene;
     public static String pathFile = "src/main/resources/Archivos/";
     public static String pathImg = "src/main/resources/Imagenes/";
+    public static ArrayList<Usuario> usuarios = new ArrayList<>();
+    public static ArrayList<Paciente> pacientes = new ArrayList<>();
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -22,6 +27,7 @@ public class VithasLabsApp extends Application {
         Parent root = fxmlLoader.load();
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setTitle("Vithas Labs");
         stage.show();
     }
 
@@ -31,6 +37,10 @@ public class VithasLabsApp extends Application {
     }
 
     public static void main(String[] args) {
+        generarUsuarios(pathFile + "usuarios.txt");
+        generarPacientes(pathFile + "pacientes.txt");
+        System.out.println(usuarios);
+        System.out.println(pacientes);
         launch();
     }
 
