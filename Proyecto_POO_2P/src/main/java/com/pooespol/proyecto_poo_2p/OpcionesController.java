@@ -49,7 +49,6 @@ public class OpcionesController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(VithasLabsApp.class.getResource("ubicaciones.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
-        
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
