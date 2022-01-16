@@ -1,9 +1,9 @@
 package com.pooespol.proyecto_poo_2p;
 
-import static com.pooespol.proyecto_poo_2p.modelo.ArchivoRW.generarPacientes;
-import static com.pooespol.proyecto_poo_2p.modelo.ArchivoRW.generarUsuarios;
 import com.pooespol.proyecto_poo_2p.modelo.usuarios.Paciente;
+import static com.pooespol.proyecto_poo_2p.modelo.usuarios.Paciente.generarPacientes;
 import com.pooespol.proyecto_poo_2p.modelo.usuarios.Usuario;
+import static com.pooespol.proyecto_poo_2p.modelo.usuarios.Usuario.generarUsuarios;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
