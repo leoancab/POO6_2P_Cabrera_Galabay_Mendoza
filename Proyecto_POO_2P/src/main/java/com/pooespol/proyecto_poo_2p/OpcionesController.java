@@ -19,13 +19,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
 /**
  * FXML Controller class
  *
  * @author cgala
  */
 public class OpcionesController implements Initializable {
-
 
     @FXML
     private Button btn_Sucursales;
@@ -35,23 +35,36 @@ public class OpcionesController implements Initializable {
     private Label l_bienvenida;
     @FXML
     private VBox vb_opciones;
+
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         String nombres = InicioSesionController.pacienteLogin.getNombres();
         l_bienvenida.setText("Bienvenido " + nombres);
-    }    
-    
+    }
+
     @FXML
-    private void verSucursales(ActionEvent event) throws IOException {
+    private void verSucursales() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(VithasLabsApp.class.getResource("ubicaciones.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    private void pruebaDomicilio() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(VithasLabsApp.class.getResource("agendarPrueba.fxml"));
+        Parent root1 = fxmlLoader.load();
+        Scene scene1 = new Scene(root1);
+        Stage stage2 = new Stage();
+        stage2.setScene(scene1);
+        stage2.show();
     }
 
 }

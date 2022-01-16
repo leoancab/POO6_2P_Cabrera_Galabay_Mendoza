@@ -98,12 +98,10 @@ public class UbicacionesController implements Initializable {
                         ex.printStackTrace();
                     }
                 }
-
             }
         });
         hilo1.setDaemon(true);
         hilo1.start();
-
     }
     
     public void mostrarVentana() throws IOException{
@@ -113,8 +111,6 @@ public class UbicacionesController implements Initializable {
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setResizable(true);
-        
-        
         stage.show();
     }
 }
