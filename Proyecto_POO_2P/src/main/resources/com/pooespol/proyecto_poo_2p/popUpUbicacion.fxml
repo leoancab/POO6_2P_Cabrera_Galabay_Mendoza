@@ -25,7 +25,7 @@
             <Insets />
          </opaqueInsets>
       </VBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+      <HBox fx:id="hb" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
          <children>
             <Label fx:id="lbTiempo" text="Label">
                <HBox.margin>
