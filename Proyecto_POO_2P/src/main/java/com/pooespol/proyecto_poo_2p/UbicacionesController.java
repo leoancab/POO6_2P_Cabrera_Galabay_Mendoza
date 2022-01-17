@@ -128,11 +128,13 @@ public class UbicacionesController implements Initializable {
         
         //El root principal de nuestra ventana.
         VBox popUp = new VBox(info, control);
+        
         //Agregamos proiedades a los contenedores
-        popUp.setPrefSize(350, 200);
-        info.setPrefHeight(100);
+        popUp.setPrefSize(350, 150);
+        info.setPrefHeight(75);
         info.setAlignment(Pos.BOTTOM_LEFT);
-        info.setPadding(new Insets(25, 25, 25, 25));
+        info.setPadding(new Insets(25, 25, 0, 25));
+        control.setPrefHeight(75);
         control.setPadding(new Insets(25));
         control.setSpacing(110);
         
@@ -170,7 +172,7 @@ public class UbicacionesController implements Initializable {
 
         //lbNombre.setText("hola");
         //lbDireccion.setText("hola2");
-        for (int i = 5; i >= 0; i--) {
+        for (int i = 5; i > 0; i--) {
             String status = "mostrando " + i + " segundos...";
             System.out.println(status);
             Platform.runLater(new Runnable() {

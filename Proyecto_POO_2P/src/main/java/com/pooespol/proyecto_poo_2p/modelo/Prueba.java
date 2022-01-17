@@ -4,24 +4,23 @@
  */
 package com.pooespol.proyecto_poo_2p.modelo;
 
-import java.util.Date;
-
+//import java.util.Date;
 /**
  *
  * @author leonel
  */
 public class Prueba {
-    
+
     private String codigoPrueba;
     private TipoPrueba tipoPrueba;
     private String nombrePrueba;
-    private Date fechaPrueba;
+    private double precioPrueba;
 
-    public Prueba(String codigoPrueba, TipoPrueba tipoPrueba, String nombrePrueba, Date fechaPrueba) {
+    public Prueba(String codigoPrueba, TipoPrueba tipoPrueba, String nombrePrueba, double precioPrueba) {
         this.codigoPrueba = codigoPrueba;
         this.tipoPrueba = tipoPrueba;
         this.nombrePrueba = nombrePrueba;
-        this.fechaPrueba = fechaPrueba;
+        this.precioPrueba = precioPrueba;
     }
 
     public String getCodigoPrueba() {
@@ -48,13 +47,11 @@ public class Prueba {
         this.nombrePrueba = nombrePrueba;
     }
 
-    public Date getFechaPrueba() {
-        return fechaPrueba;
+    public double getPrecioPrueba() {
+        return precioPrueba;
     }
 
-    public void setFechaPrueba(Date fechaPrueba) {
-        this.fechaPrueba = fechaPrueba;
+    public void setPrecioPrueba(double precioPrueba) {
+        this.precioPrueba = precioPrueba;
     }
-    
-    
 }
