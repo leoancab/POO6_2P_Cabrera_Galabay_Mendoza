@@ -16,6 +16,7 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -43,8 +44,6 @@ public class AgendarPruebaController implements Initializable {
     @FXML
     private Label lbSubtotal;
     @FXML
-    private Label lbServDom;
-    @FXML
     private Label lbTotal;
     @FXML
     private VBox root;
@@ -54,6 +53,18 @@ public class AgendarPruebaController implements Initializable {
     private Pane rootDetalle;
     @FXML
     private Button btnContinuar;
+    @FXML
+    private Label lbNombre1;
+    @FXML
+    private Label lbNombre2;
+    @FXML
+    private Label lbCantidad1;
+    @FXML
+    private Label lbCantidad2;
+    @FXML
+    private Label lbPrecio1;
+    @FXML
+    private Label lbPrecio2;
 
     /**
      * Initializes the controller class.
@@ -64,17 +75,17 @@ public class AgendarPruebaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ArrayList<Prueba> pruebas = new ArrayList<>();
-        cbTipo.getItems().addAll("Diagnostico", "Anticuerpos");
+        //cbTipo.getItems().addAll("Diagnostico", "Anticuerpos");
+
         BufferedReader br = null;
         FileReader fr = null;
         try {
-            fr = new FileReader("pruebas.txt", StandardCharsets.UTF_8);
+            fr = new FileReader(VithasLabsApp.pathFile + "pruebas.txt", StandardCharsets.UTF_8);
             br = new BufferedReader(fr);
             String linea;
             while ((linea = br.readLine()) != null) {
-                Prueba prueba = new Prueba(linea.split(",")[0], TipoPrueba.valueOf(linea.split(",")[1]), linea.split(",")[2], Double.parseDouble(linea.split(",")[3]));
+                Prueba prueba = new Prueba(linea.split(",")[0], linea.split(",")[1], linea.split(",")[2], Double.parseDouble(linea.split(",")[3]));
                 pruebas.add(prueba);
-
             }
 
         } catch (IOException e) {
@@ -90,6 +101,12 @@ public class AgendarPruebaController implements Initializable {
                 System.out.println("Error...");
             }
 
+        }
+        for (int i = 0;i<pruebas.size();i++) {
+            if(!cbTipo.getItems().get(i).equals(pruebas.get(i).getTipoPrueba())){
+                cbTipo.getItems().add(pruebas.get(i).getTipoPrueba());
+            }
+            //cbTipo.getItems().add(p.getTipoPrueba());
         }
     }
 }

@@ -12,11 +12,11 @@ package com.pooespol.proyecto_poo_2p.modelo;
 public class Prueba {
 
     private String codigoPrueba;
-    private TipoPrueba tipoPrueba;
+    private String tipoPrueba;
     private String nombrePrueba;
     private double precioPrueba;
 
-    public Prueba(String codigoPrueba, TipoPrueba tipoPrueba, String nombrePrueba, double precioPrueba) {
+    public Prueba(String codigoPrueba, String tipoPrueba, String nombrePrueba, double precioPrueba) {
         this.codigoPrueba = codigoPrueba;
         this.tipoPrueba = tipoPrueba;
         this.nombrePrueba = nombrePrueba;
@@ -31,11 +31,11 @@ public class Prueba {
         this.codigoPrueba = codigoPrueba;
     }
 
-    public TipoPrueba getTipoPrueba() {
+    public String getTipoPrueba() {
         return tipoPrueba;
     }
 
-    public void setTipoPrueba(TipoPrueba tipoPrueba) {
+    public void setTipoPrueba(String tipoPrueba) {
         this.tipoPrueba = tipoPrueba;
     }
 
