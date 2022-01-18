@@ -74,8 +74,12 @@ public class AgendarPruebaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        cbTipo.getItems().addAll("Diagnóstico", "Anticuerpos");
+        ArrayList<Prueba> pruebas = crearPruebas();
+    }
+
+    public ArrayList<Prueba> crearPruebas() {
         ArrayList<Prueba> pruebas = new ArrayList<>();
-        //cbTipo.getItems().addAll("Diagnostico", "Anticuerpos");
 
         BufferedReader br = null;
         FileReader fr = null;
@@ -84,13 +88,11 @@ public class AgendarPruebaController implements Initializable {
             br = new BufferedReader(fr);
             String linea;
             while ((linea = br.readLine()) != null) {
-                Prueba prueba = new Prueba(linea.split(",")[0], linea.split(",")[1], linea.split(",")[2], Double.parseDouble(linea.split(",")[3]));
+                Prueba prueba = new Prueba(linea.split(",")[0], TipoPrueba.valueOf(linea.split(",")[1]), linea.split(",")[2], linea.split(",")[3]);
                 pruebas.add(prueba);
             }
-
         } catch (IOException e) {
             System.out.println("No se encontró el archivo");
-
         } finally {
             try {
                 if (br != null) {
@@ -100,13 +102,7 @@ public class AgendarPruebaController implements Initializable {
             } catch (IOException e) {
                 System.out.println("Error...");
             }
-
         }
-        for (int i = 0;i<pruebas.size();i++) {
-            if(!cbTipo.getItems().get(i).equals(pruebas.get(i).getTipoPrueba())){
-                cbTipo.getItems().add(pruebas.get(i).getTipoPrueba());
-            }
-            //cbTipo.getItems().add(p.getTipoPrueba());
-        }
+        return pruebas;
     }
 }

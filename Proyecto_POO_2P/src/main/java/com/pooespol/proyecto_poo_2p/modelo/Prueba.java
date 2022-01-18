@@ -12,11 +12,11 @@ package com.pooespol.proyecto_poo_2p.modelo;
 public class Prueba {
 
     private String codigoPrueba;
-    private String tipoPrueba;
+    private TipoPrueba tipoPrueba;
     private String nombrePrueba;
-    private double precioPrueba;
+    private String precioPrueba;
 
-    public Prueba(String codigoPrueba, String tipoPrueba, String nombrePrueba, double precioPrueba) {
+    public Prueba(String codigoPrueba, TipoPrueba tipoPrueba, String nombrePrueba, String precioPrueba) {
         this.codigoPrueba = codigoPrueba;
         this.tipoPrueba = tipoPrueba;
         this.nombrePrueba = nombrePrueba;
@@ -31,11 +31,11 @@ public class Prueba {
         this.codigoPrueba = codigoPrueba;
     }
 
-    public String getTipoPrueba() {
+    public TipoPrueba getTipoPrueba() {
         return tipoPrueba;
     }
 
-    public void setTipoPrueba(String tipoPrueba) {
+    public void setTipoPrueba(TipoPrueba tipoPrueba) {
         this.tipoPrueba = tipoPrueba;
     }
 
@@ -47,11 +47,17 @@ public class Prueba {
         this.nombrePrueba = nombrePrueba;
     }
 
-    public double getPrecioPrueba() {
+    public String getPrecioPrueba() {
         return precioPrueba;
     }
 
-    public void setPrecioPrueba(double precioPrueba) {
+    public void setPrecioPrueba(String precioPrueba) {
         this.precioPrueba = precioPrueba;
     }
+
+    @Override
+    public String toString() {
+        return nombrePrueba;
+    }
+
 }
