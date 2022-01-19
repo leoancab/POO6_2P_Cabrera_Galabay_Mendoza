@@ -6,6 +6,7 @@ package com.pooespol.proyecto_poo_2p;
 
 import com.pooespol.proyecto_poo_2p.modelo.Prueba;
 import com.pooespol.proyecto_poo_2p.modelo.TipoPrueba;
+import com.pooespol.proyecto_poo_2p.CamposIncompletosException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -61,34 +63,47 @@ public class AgendarPruebaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //Ubicar las opciones en el ComboBox de tipo de prueba.
         cbTipo.getItems().addAll("Diagnóstico", "Anticuerpos");
+        
+        //Se genera la lista de pruebas.
         ArrayList<Prueba> pruebas = crearPruebas();
-        //System.out.println(verificarCantidad());
+        
+        /*
+        Este control permite ubicar las opciones correspondientes en el comboBox
+        de prueba segun el tipo de prueba que se haya seleccionado
+        */
         cbTipo.setOnAction((ActionEvent t) -> {
-            if (cbTipo.getSelectionModel().getSelectedItem().equals("Diagnóstico")) {
-                cbPrueba.getItems().clear();
-                for (int i = 0; i < 2; i++) {
-                    cbPrueba.getItems().add(pruebas.get(i));
-                }
-            }
-            if (cbTipo.getSelectionModel().getSelectedItem().equals("Anticuerpos")) {
-                cbPrueba.getItems().clear();
-                for (int i = 2; i < pruebas.size(); i++) {
-                    cbPrueba.getItems().add(pruebas.get(i));
-                }
-            }
+            String op = cbTipo.getSelectionModel().getSelectedItem();
+            setOpcionesPrueba(op , pruebas);
         });
         cbPrueba.setOnAction((ActionEvent t) -> {
-            int p = cbPrueba.getSelectionModel().getSelectedIndex();
-            if (cbTipo.getSelectionModel().getSelectedItem().equals("Diagnóstico")) {
-                lbValorUnitario.setText(pruebas.get(p).getPrecioPrueba());
-            } else if (cbTipo.getSelectionModel().getSelectedItem().equals("Anticuerpos")) {
-                p += 2;
-                lbValorUnitario.setText(pruebas.get(p).getPrecioPrueba());
-            }
+            setPrecioLabl();
         });
     }
+    
+    private void setOpcionesPrueba(String tipoPrueba, ArrayList<Prueba> listaP) {
+        //Limpiamos el contenido del comboBox del contenido de prueba.
+        cbPrueba.getItems().clear();
+        for (Prueba p: listaP) { 
+            //Se agregan las pruebas de ese tipo al comoBox de pruebas.
+            if (p.getTipoPrueba().equals(TipoPrueba.valueOf(tipoPrueba))) {
+                cbPrueba.getItems().add(p);
+            }
+        }
+    }
+    
+    private void setPrecioLabl() {
+        Prueba p = cbPrueba.getSelectionModel().getSelectedItem();
+            if ( p != null) {
+            System.out.println("Seleccinado... " + p.getPrecioPrueba());
+            
+            lbValorUnitario.setText(p.getPrecioPrueba()); 
+            }
+    }
 
+    /*Lee el archivo de pruebas y gerera la lista de pruebas
+    y retorna la lista de pruebas.*/
     public ArrayList<Prueba> crearPruebas() {
         ArrayList<Prueba> pruebas = new ArrayList<>();
 
@@ -119,6 +134,18 @@ public class AgendarPruebaController implements Initializable {
 
     @FXML
     public ArrayList<String> agregarCita() {
+        String cantidad = tfCantidad.getText();
+        String tipo = cbTipo.getSelectionModel().getSelectedItem();
+        Prueba prueba = cbPrueba.getSelectionModel().getSelectedItem();
+        
+        try {
+        if (cantidad.equals("") || tipo == null || prueba == null) {
+            throw new CamposIncompletosException("Hola");
+        }
+        } catch(CamposIncompletosException e) {
+            lbAdvertencia.setText("Campos incompletos, no se puede agregar");
+        }
+        
         Label lbNombre = new Label(String.valueOf(cbPrueba.getSelectionModel().getSelectedItem()));
         Label lbCantidad = new Label(tfCantidad.getText());
         Label lbPrecio = new Label(String.valueOf(Double.valueOf(tfCantidad.getText()) * Double.valueOf(cbPrueba.getSelectionModel().getSelectedItem().getPrecioPrueba())) + "0");
