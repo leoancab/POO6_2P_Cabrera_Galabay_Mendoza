@@ -13,18 +13,18 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -38,7 +38,7 @@ public class AgendarPruebaController implements Initializable {
     @FXML
     private ComboBox<Prueba> cbPrueba;
     @FXML
-    private Label lbPrecio;
+    private Label lbValorUnitario;
     @FXML
     private TextField tfCantidad;
     @FXML
@@ -46,25 +46,12 @@ public class AgendarPruebaController implements Initializable {
     @FXML
     private Label lbTotal;
     @FXML
-    private VBox root;
+    private GridPane gpDetalle;
     @FXML
-    private Pane rootAgendar;
-    @FXML
-    private Pane rootDetalle;
-    @FXML
-    private Button btnContinuar;
-    @FXML
-    private Label lbNombre1;
-    @FXML
-    private Label lbNombre2;
-    @FXML
-    private Label lbCantidad1;
-    @FXML
-    private Label lbCantidad2;
-    @FXML
-    private Label lbPrecio1;
-    @FXML
-    private Label lbPrecio2;
+    private Label lbAdvertencia;
+    private double subtotal = 0;
+    private final ArrayList<String> pruebasCitas = new ArrayList<>();
+    private double totalPagar = 0;
 
     /**
      * Initializes the controller class.
@@ -76,6 +63,30 @@ public class AgendarPruebaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         cbTipo.getItems().addAll("Diagnóstico", "Anticuerpos");
         ArrayList<Prueba> pruebas = crearPruebas();
+        //System.out.println(verificarCantidad());
+        cbTipo.setOnAction((ActionEvent t) -> {
+            if (cbTipo.getSelectionModel().getSelectedItem().equals("Diagnóstico")) {
+                cbPrueba.getItems().clear();
+                for (int i = 0; i < 2; i++) {
+                    cbPrueba.getItems().add(pruebas.get(i));
+                }
+            }
+            if (cbTipo.getSelectionModel().getSelectedItem().equals("Anticuerpos")) {
+                cbPrueba.getItems().clear();
+                for (int i = 2; i < pruebas.size(); i++) {
+                    cbPrueba.getItems().add(pruebas.get(i));
+                }
+            }
+        });
+        cbPrueba.setOnAction((ActionEvent t) -> {
+            int p = cbPrueba.getSelectionModel().getSelectedIndex();
+            if (cbTipo.getSelectionModel().getSelectedItem().equals("Diagnóstico")) {
+                lbValorUnitario.setText(pruebas.get(p).getPrecioPrueba());
+            } else if (cbTipo.getSelectionModel().getSelectedItem().equals("Anticuerpos")) {
+                p += 2;
+                lbValorUnitario.setText(pruebas.get(p).getPrecioPrueba());
+            }
+        });
     }
 
     public ArrayList<Prueba> crearPruebas() {
@@ -104,5 +115,48 @@ public class AgendarPruebaController implements Initializable {
             }
         }
         return pruebas;
+    }
+
+    @FXML
+    public ArrayList<String> agregarCita() {
+        Label lbNombre = new Label(String.valueOf(cbPrueba.getSelectionModel().getSelectedItem()));
+        Label lbCantidad = new Label(tfCantidad.getText());
+        Label lbPrecio = new Label(String.valueOf(Double.valueOf(tfCantidad.getText()) * Double.valueOf(cbPrueba.getSelectionModel().getSelectedItem().getPrecioPrueba())) + "0");
+
+        lbNombre.setPrefWidth(100);
+        lbNombre.setAlignment(Pos.CENTER);
+        lbCantidad.setPrefWidth(100);
+        lbCantidad.setAlignment(Pos.CENTER);
+        lbPrecio.setPrefWidth(100);
+        lbPrecio.setAlignment(Pos.CENTER);
+
+        gpDetalle.addColumn(0, lbNombre);
+        gpDetalle.addColumn(1, lbCantidad);
+        gpDetalle.addColumn(2, lbPrecio);
+
+        subtotal += Double.valueOf(lbPrecio.getText());
+        lbSubtotal.setText(String.valueOf(subtotal) + "0");
+        lbTotal.setText(String.valueOf(Double.valueOf(lbSubtotal.getText()) + 5.0) + "0");
+
+        pruebasCitas.add(lbNombre.getText());
+
+        lbValorUnitario.setText("");
+        tfCantidad.clear();
+        return pruebasCitas;
+    }
+
+    public double total() {
+        totalPagar = Double.valueOf(lbTotal.getText());
+        return totalPagar;
+    }
+
+    @FXML
+    public void continuar() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(VithasLabsApp.class.getResource("agendarPruebaP2.fxml"));
+        Parent root = fxmlLoader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
     }
 }

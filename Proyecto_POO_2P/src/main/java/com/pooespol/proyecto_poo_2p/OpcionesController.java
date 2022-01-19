@@ -28,13 +28,7 @@ import javafx.stage.Stage;
 public class OpcionesController implements Initializable {
 
     @FXML
-    private Button btn_Sucursales;
-    @FXML
-    private Button btn_PruebaDomicilio;
-    @FXML
     private Label l_bienvenida;
-    @FXML
-    private VBox vb_opciones;
 
     /**
      * Initializes the controller class.
