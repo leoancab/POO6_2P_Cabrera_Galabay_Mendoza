@@ -137,9 +137,18 @@
                   <RadioButton fx:id="femenino" mnemonicParsing="false" text="Femenino">
                      <toggleGroup>
                         <ToggleGroup fx:id="genero" />
-                     </toggleGroup></RadioButton>
-                  <RadioButton fx:id="masculino" mnemonicParsing="false" text="Masculino" toggleGroup="$genero" />
-                  <RadioButton fx:id="otros" mnemonicParsing="false" text="Otros" toggleGroup="$genero" />
+                     </toggleGroup>
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font></RadioButton>
+                  <RadioButton fx:id="masculino" mnemonicParsing="false" text="Masculino" toggleGroup="$genero">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font></RadioButton>
+                  <RadioButton fx:id="otros" mnemonicParsing="false" text="Otros" toggleGroup="$genero">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font></RadioButton>
                </children>
             </HBox>
             <TextField fx:id="txt_Contrasenia" GridPane.columnIndex="1" GridPane.rowIndex="9">

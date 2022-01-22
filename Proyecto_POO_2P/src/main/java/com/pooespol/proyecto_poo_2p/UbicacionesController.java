@@ -4,6 +4,7 @@
  */
 package com.pooespol.proyecto_poo_2p;
 
+import com.pooespol.proyecto_poo_2p.VithasLabsApp;
 import com.pooespol.proyecto_poo_2p.modelo.Local;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -13,9 +14,11 @@ import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -33,7 +36,7 @@ import javafx.stage.Stage;
  * @author leonel
  */
 public class UbicacionesController implements Initializable {
-
+    
     private int numero = (int) (Math.random() * 10 + 1);
     @FXML
     private Pane root;
@@ -46,89 +49,89 @@ public class UbicacionesController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        try {
+            //root.backgroundProperty().set(Background);
+            Parent root1 = FXMLLoader.load(VithasLabsApp.class.getResource("ubicaciones.fxml"));
+            Scene scene = new Scene(root1);
+            String css = VithasLabsApp.class.getResource("VentanaOpciones.css").toExternalForm();
+            scene.getStylesheets().add(css);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
         //Ubicamos los centros de salud en el mapa
         mostrarLocales();
-
     }
-
+    
     public void mostrarLocales() {
-
         Thread hilo1 = new Thread(new Runnable() {
             @Override
             public void run() {
                 ubicarLocales();
             }
         });
-
+        
         hilo1.setDaemon(true);
         hilo1.start();
     }
-
     
     private void ubicarLocales() {
         ArrayList<Local> locales = Local.obtenerLocal();
         for (Local l : locales) {
-                    System.out.println(l);
-
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-
-                            System.out.println(numero);
-                            ImageView vistaImagen = null;
-
-                            try (FileInputStream fis = new FileInputStream(VithasLabsApp.pathImg + "ubicacion.png")) {
-                                Image imagen = new Image(fis, 50, 50, false, false);
-                                vistaImagen = new ImageView(imagen);
-                                vistaImagen.relocate(l.getCordX() - 25, l.getCordY() - 25);    
-                                
-                                 vistaImagen.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                                @Override
-                                public void handle(MouseEvent t) {
-                                    mostrarVentana(l.getNombre(), l.getDireccion());
-                                }
-                            });
-                                 
-                                 
-                                 
-                            } catch (IOException e) {
-                                System.out.println("No se encuentra la imagen");
+            System.out.println(l);
+            
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    
+                    System.out.println(numero);
+                    ImageView vistaImagen = null;
+                    
+                    try (FileInputStream fis = new FileInputStream(VithasLabsApp.pathImg + "ubicacion.png")) {
+                        Image imagen = new Image(fis, 50, 50, false, false);
+                        vistaImagen = new ImageView(imagen);
+                        vistaImagen.relocate(l.getCordX() - 25, l.getCordY() - 25);
+                        
+                        vistaImagen.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent t) {
+                                mostrarVentana(l.getNombre(), l.getDireccion());
                             }
-                            
-                        root.getChildren().add(vistaImagen);
-                            
-                           
-
-                        }
-                    });
-
-                    try {
-                        Thread.sleep(numero * 1000);
-                    } catch (InterruptedException ex) {
-                        ex.printStackTrace();
+                        });
+                        
+                    } catch (IOException e) {
+                        System.out.println("No se encuentra la imagen");
                     }
+                    
+                    root.getChildren().add(vistaImagen);
+                    
                 }
+            });
+            
+            try {
+                Thread.sleep(numero * 1000);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        }
         
     }
-    
     
     public void mostrarVentana(String nombre, String direccion) {
         //Crear labels
         Label lNombre = new Label(nombre);
         Label lDireccion = new Label(direccion);
         Label lContador = new Label("mostrando n segundos...");
-        
+
         //Creamos el boton para poder cerrar la ventana.
         Button btnCerrar = new Button("Cerrar");
-        
+
         //Creamos los contenedores que contengan los label y boton. 
         VBox info = new VBox(lNombre, lDireccion);
         HBox control = new HBox(lContador, btnCerrar);
-        
+
         //El root principal de nuestra ventana.
         VBox popUp = new VBox(info, control);
-        
+
         //Agregamos proiedades a los contenedores
         popUp.setPrefSize(350, 150);
         info.setPrefHeight(75);
@@ -143,7 +146,7 @@ public class UbicacionesController implements Initializable {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
-        
+
         //Cerrarmos la ventana cuando detecte la accion en el boton.
         btnCerrar.setOnAction(e -> stage.close());
 
@@ -152,49 +155,35 @@ public class UbicacionesController implements Initializable {
             @Override
             public void run() {
                 setInfoVentana(stage, lContador);
-                
+
                 //Cerramos la ventana emergente despues de 5 segundos.
-                Platform.runLater(new Runnable(){
+                Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                    stage.close();
+                        stage.close();
                     }
                 });
             }
         });
-
         t.setDaemon(true);
         t.start();
-        
     }
     
     private void setInfoVentana(Stage stage, Label contador) {
-
-        //lbNombre.setText("hola");
-        //lbDireccion.setText("hola2");
         for (int i = 5; i > 0; i--) {
-            String status = "mostrando " + i + " segundos...";
+            String status = "Mostrando " + i + " segundos...";
             System.out.println(status);
             Platform.runLater(new Runnable() {
-                
                 @Override
                 public void run() {
                     contador.setText(status);
                 }
-
             });
-
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
-            
         }
-        
-        
-        
-
     }
-    
 }

@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 /**
  * FXML Controller class
  *
@@ -21,19 +22,24 @@ public class AgendarPruebaP2Controller implements Initializable {
 
 
     @FXML
-    private ImageView ivUbicacion;
-    @FXML
     private TextField tfDireccion;
     @FXML
     private TextField tfHora;
     @FXML
     private DatePicker dpFecha;
+    @FXML
+    private VBox vbUbicacion;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+    
+    public void ubicarPin(){
+        
+    }
     
 }

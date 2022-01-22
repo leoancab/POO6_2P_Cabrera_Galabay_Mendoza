@@ -76,11 +76,9 @@ public class InicioSesionController implements Initializable{
                 generarPaciente(u, VithasLabsApp.pacientes);
                 return true;
             }
-            
         }
         return false;
     }
-
     private static void generarPaciente(Usuario u, ArrayList<Paciente> listaP) {
         for (Paciente p: listaP) {
             if (p.getUsuario().equals(u.getUsuario())) {
