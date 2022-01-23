@@ -51,7 +51,7 @@ public class AgendarPruebaController implements Initializable {
     private Label lbAdvertencia;
     private double subtotal = 0;
     private final ArrayList<String> pruebasCitas = new ArrayList<>();
-    private double totalPagar = 0;
+    public double totalPagar;
 
     /**
      * Initializes the controller class.
@@ -161,17 +161,13 @@ public class AgendarPruebaController implements Initializable {
         subtotal += Double.valueOf(lbPrecio.getText());
         lbSubtotal.setText(String.valueOf(subtotal) + "0");
         lbTotal.setText(String.valueOf(Double.valueOf(lbSubtotal.getText()) + 5.0) + "0");
+        /*totalPagar = Double.valueOf(lbTotal.getText());*/
 
         pruebasCitas.add(lbNombre.getText());
 
         lbValorUnitario.setText("");
         tfCantidad.clear();
         return pruebasCitas;
-    }
-
-    public double total() {
-        totalPagar = Double.valueOf(lbTotal.getText());
-        return totalPagar;
     }
 
     @FXML
