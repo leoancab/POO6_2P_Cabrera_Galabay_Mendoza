@@ -49,15 +49,7 @@ public class UbicacionesController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
-            //root.backgroundProperty().set(Background);
-            Parent root1 = FXMLLoader.load(VithasLabsApp.class.getResource("ubicaciones.fxml"));
-            Scene scene = new Scene(root1);
-            String css = VithasLabsApp.class.getResource("VentanaOpciones.css").toExternalForm();
-            scene.getStylesheets().add(css);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+       
         //Ubicamos los centros de salud en el mapa
         mostrarLocales();
     }
