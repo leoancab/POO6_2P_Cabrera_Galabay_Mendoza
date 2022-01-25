@@ -1,3 +1,0 @@
-cgalabay,0998284823,Carlos,Galabay,7/03/2001,Masculino,Guayaquil,cgalabay@espol.edu.ec,09718282
-leoancab,0973849423,Leonel,Cabrera,7/01/2001,Masculino,Guayaquil,leoancab@espol.edu.ec,04222312
-villajake,099912923,Jake,Villa,19/01/2001,Masculino,Guayaquil,villa@espol.edu.ec,0912312
