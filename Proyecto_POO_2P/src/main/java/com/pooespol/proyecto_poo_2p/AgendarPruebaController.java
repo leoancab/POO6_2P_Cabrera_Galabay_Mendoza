@@ -25,7 +25,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-
 /**
  * FXML Controller class
  *
@@ -97,6 +96,7 @@ public class AgendarPruebaController implements Initializable {
             lbValorUnitario.setText(p.getPrecioPrueba().toString());
         }
     }
+
     /*Lee el archivo de pruebas y gerera la lista de pruebas
     y retorna la lista de pruebas.*/
     public ArrayList<Prueba> crearPruebas() {
@@ -132,40 +132,41 @@ public class AgendarPruebaController implements Initializable {
         String cantidad = tfCantidad.getText();
         String tipo = cbTipo.getSelectionModel().getSelectedItem();
         Prueba prueba = cbPrueba.getSelectionModel().getSelectedItem();
-
+        
         try {
             if (cantidad.equals("") || tipo == null || prueba == null) {
-                throw new CamposIncompletosException("Hola");
+                throw new CamposIncompletosException("Error");
+            } else {
+                Label lbNombre = new Label(String.valueOf(cbPrueba.getSelectionModel().getSelectedItem()));
+                Label lbCantidad = new Label(tfCantidad.getText());
+                Label lbPrecio = new Label(String.valueOf(Double.valueOf(tfCantidad.getText()) * cbPrueba.getSelectionModel().getSelectedItem().getPrecioPrueba()) + "0");
+
+                lbNombre.setPrefWidth(100);
+                lbNombre.setAlignment(Pos.CENTER);
+                lbCantidad.setPrefWidth(100);
+                lbCantidad.setAlignment(Pos.CENTER);
+                lbPrecio.setPrefWidth(100);
+                lbPrecio.setAlignment(Pos.CENTER);
+
+                gpDetalle.addColumn(0, lbNombre);
+                gpDetalle.addColumn(1, lbCantidad);
+                gpDetalle.addColumn(2, lbPrecio);
+
+                subtotal += Double.valueOf(lbPrecio.getText());
+                lbSubtotal.setText(String.valueOf(subtotal) + "0");
+                lbTotal.setText(String.valueOf(Double.valueOf(lbSubtotal.getText()) + 5.0) + "0");
+                totalPagar = Double.valueOf(lbTotal.getText());
+
+                pruebasCita.add(cbPrueba.getSelectionModel().getSelectedItem());
+
+                lbValorUnitario.setText("");
+                tfCantidad.clear();
+                lbAdvertencia.setText("");
             }
         } catch (CamposIncompletosException e) {
             System.out.println("Campos incompletos");
             lbAdvertencia.setText("Campos incompletos");
         }
-
-        Label lbNombre = new Label(String.valueOf(cbPrueba.getSelectionModel().getSelectedItem()));
-        Label lbCantidad = new Label(tfCantidad.getText());
-        Label lbPrecio = new Label(String.valueOf(Double.valueOf(tfCantidad.getText()) * cbPrueba.getSelectionModel().getSelectedItem().getPrecioPrueba()) + "0");
-
-        lbNombre.setPrefWidth(100);
-        lbNombre.setAlignment(Pos.CENTER);
-        lbCantidad.setPrefWidth(100);
-        lbCantidad.setAlignment(Pos.CENTER);
-        lbPrecio.setPrefWidth(100);
-        lbPrecio.setAlignment(Pos.CENTER);
-
-        gpDetalle.addColumn(0, lbNombre);
-        gpDetalle.addColumn(1, lbCantidad);
-        gpDetalle.addColumn(2, lbPrecio);
-
-        subtotal += Double.valueOf(lbPrecio.getText());
-        lbSubtotal.setText(String.valueOf(subtotal) + "0");
-        lbTotal.setText(String.valueOf(Double.valueOf(lbSubtotal.getText()) + 5.0) + "0");
-        totalPagar = Double.valueOf(lbTotal.getText());
-
-        pruebasCita.add(cbPrueba.getSelectionModel().getSelectedItem());
-
-        lbValorUnitario.setText("");
-        tfCantidad.clear();
         return pruebasCita;
     }
 

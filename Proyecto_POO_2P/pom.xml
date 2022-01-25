@@ -20,6 +20,11 @@
             <artifactId>javafx-fxml</artifactId>
             <version>13</version>
         </dependency>
+        <dependency>
+            <groupId>com.libreria.correo</groupId>
+            <artifactId>libreria</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

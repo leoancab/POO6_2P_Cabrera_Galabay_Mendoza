@@ -14,11 +14,9 @@ import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -36,7 +34,7 @@ import javafx.stage.Stage;
  * @author leonel
  */
 public class UbicacionesController implements Initializable {
-
+    
     private int numero = (int) (Math.random() * 10 + 1);
     @FXML
     private Pane root;
@@ -49,9 +47,10 @@ public class UbicacionesController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        VithasLabsApp.fondo("mapa", ".png", root);
         mostrarLocales();
     }
-
+    
     public void mostrarLocales() {
         Thread hilo1 = new Thread(new Runnable() {
             @Override
@@ -59,53 +58,53 @@ public class UbicacionesController implements Initializable {
                 ubicarLocales();
             }
         });
-
+        
         hilo1.setDaemon(true);
         hilo1.start();
     }
-
+    
     private void ubicarLocales() {
         ArrayList<Local> locales = Local.obtenerLocal();
         for (Local l : locales) {
             System.out.println(l);
-
+            
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
-
+                    
                     System.out.println(numero);
                     ImageView vistaImagen = null;
-
+                    
                     try (FileInputStream fis = new FileInputStream(VithasLabsApp.pathImg + "ubicacion.png")) {
                         Image imagen = new Image(fis, 50, 50, false, false);
                         vistaImagen = new ImageView(imagen);
                         vistaImagen.relocate(l.getCordX() - 25, l.getCordY() - 25);
-
+                        
                         vistaImagen.setOnMouseClicked(new EventHandler<MouseEvent>() {
                             @Override
                             public void handle(MouseEvent t) {
                                 mostrarVentana(l.getNombre(), l.getDireccion());
                             }
                         });
-
+                        
                     } catch (IOException e) {
                         System.out.println("No se encuentra la imagen");
                     }
-
+                    
                     root.getChildren().add(vistaImagen);
-
+                    
                 }
             });
-
+            
             try {
                 Thread.sleep(numero * 1000);
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
         }
-
+        
     }
-
+    
     public void mostrarVentana(String nombre, String direccion) {
         //Crear labels
         Label lNombre = new Label(nombre);
@@ -130,7 +129,7 @@ public class UbicacionesController implements Initializable {
         control.setPrefHeight(75);
         control.setPadding(new Insets(25));
         control.setSpacing(110);
-
+        
         Scene scene = new Scene(popUp);
         Stage stage = new Stage();
         stage.setScene(scene);
@@ -158,7 +157,7 @@ public class UbicacionesController implements Initializable {
         t.setDaemon(true);
         t.start();
     }
-
+    
     private void setInfoVentana(Stage stage, Label contador) {
         for (int i = 5; i > 0; i--) {
             String status = "Mostrando " + i + " segundos...";

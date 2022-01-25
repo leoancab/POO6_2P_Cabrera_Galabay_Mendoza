@@ -45,12 +45,12 @@ public class AgendarPruebaP2Controller implements Initializable {
     private DatePicker dpFecha;
     @FXML
     private Label lbAdvertencia;
-    @FXML
-    private Pane pnUbicacion;
     private double x;
     private double y;
     @FXML
     private ComboBox<String> cbHora;
+    @FXML
+    private Pane root;
 
     /**
      * Initializes the controller class.
@@ -60,14 +60,15 @@ public class AgendarPruebaP2Controller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        VithasLabsApp.fondo("mapa", ".png", root);
         ArrayList<Prueba> pruebasCita = AgendarPruebaController.pruebasCita;
         ubicarPin();
         cbHora.getItems().addAll("07:00", "08:00", "09:00", "10:00", "11:00", "12:00");
     }
-
+    
     public void ubicarPin() {
-        pnUbicacion.setOnMouseClicked((MouseEvent t) -> {
-            pnUbicacion.getChildren().clear();
+        root.setOnMouseClicked((MouseEvent t) -> {
+            root.getChildren().clear();
             ImageView imageview = null;
             try (FileInputStream fis = new FileInputStream(VithasLabsApp.pathImg + "PinMapa.png")) {
                 Image imagen = new Image(fis, 30, 40, false, false);
@@ -79,7 +80,7 @@ public class AgendarPruebaP2Controller implements Initializable {
             y = t.getY() - 40;
             imageview.setLayoutX(x);
             imageview.setLayoutY(y);
-            pnUbicacion.getChildren().add(imageview);
+            root.getChildren().add(imageview);
         });
     }
 
@@ -160,14 +161,18 @@ public class AgendarPruebaP2Controller implements Initializable {
         String fecha = dpFecha.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         try {
             if (direccion.equals("") || fecha == null || cbHora == null) {
-                throw new CamposIncompletosException("Hola");
+                throw new CamposIncompletosException("Error");
+            } else {
+                escribirContrataciones();
+                escribirDetalles();
+                mostrarInfo();
+                lbAdvertencia.setText("");
             }
         } catch (CamposIncompletosException e) {
             System.out.println("Campos incompletos");
             lbAdvertencia.setText("Campos incompletos");
         }
-        escribirContrataciones();
-        escribirDetalles();
-        mostrarInfo();
+
     }
+
 }
