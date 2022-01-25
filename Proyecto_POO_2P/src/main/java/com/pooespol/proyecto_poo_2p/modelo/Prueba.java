@@ -14,9 +14,9 @@ public class Prueba {
     private String codigoPrueba;
     private TipoPrueba tipoPrueba;
     private String nombrePrueba;
-    private String precioPrueba;
+    private Double precioPrueba;
 
-    public Prueba(String codigoPrueba, TipoPrueba tipoPrueba, String nombrePrueba, String precioPrueba) {
+    public Prueba(String codigoPrueba, TipoPrueba tipoPrueba, String nombrePrueba, Double precioPrueba) {
         this.codigoPrueba = codigoPrueba;
         this.tipoPrueba = tipoPrueba;
         this.nombrePrueba = nombrePrueba;
@@ -47,11 +47,11 @@ public class Prueba {
         this.nombrePrueba = nombrePrueba;
     }
 
-    public String getPrecioPrueba() {
+    public Double getPrecioPrueba() {
         return precioPrueba;
     }
 
-    public void setPrecioPrueba(String precioPrueba) {
+    public void setPrecioPrueba(Double precioPrueba) {
         this.precioPrueba = precioPrueba;
     }
 
