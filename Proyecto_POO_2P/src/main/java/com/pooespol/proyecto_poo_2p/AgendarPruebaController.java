@@ -50,8 +50,8 @@ public class AgendarPruebaController implements Initializable {
     @FXML
     private Label lbAdvertencia;
     private double subtotal = 0;
-    private final ArrayList<String> pruebasCitas = new ArrayList<>();
-    public double totalPagar;
+    public static ArrayList<Prueba> pruebasCita = new ArrayList<>();
+    public static double totalPagar;
 
     /**
      * Initializes the controller class.
@@ -94,10 +94,9 @@ public class AgendarPruebaController implements Initializable {
     private void setPrecioLabl() {
         Prueba p = cbPrueba.getSelectionModel().getSelectedItem();
         if (p != null) {
-            lbValorUnitario.setText(p.getPrecioPrueba());
+            lbValorUnitario.setText(p.getPrecioPrueba().toString());
         }
     }
-
     /*Lee el archivo de pruebas y gerera la lista de pruebas
     y retorna la lista de pruebas.*/
     public ArrayList<Prueba> crearPruebas() {
@@ -110,7 +109,7 @@ public class AgendarPruebaController implements Initializable {
             br = new BufferedReader(fr);
             String linea;
             while ((linea = br.readLine()) != null) {
-                Prueba prueba = new Prueba(linea.split(",")[0], TipoPrueba.valueOf(linea.split(",")[1]), linea.split(",")[2], linea.split(",")[3]);
+                Prueba prueba = new Prueba(linea.split(",")[0], TipoPrueba.valueOf(linea.split(",")[1]), linea.split(",")[2], Double.valueOf(linea.split(",")[3]));
                 pruebas.add(prueba);
             }
         } catch (IOException e) {
@@ -129,7 +128,7 @@ public class AgendarPruebaController implements Initializable {
     }
 
     @FXML
-    public ArrayList<String> agregarCita() {
+    public ArrayList<Prueba> agregarCita() {
         String cantidad = tfCantidad.getText();
         String tipo = cbTipo.getSelectionModel().getSelectedItem();
         Prueba prueba = cbPrueba.getSelectionModel().getSelectedItem();
@@ -145,7 +144,7 @@ public class AgendarPruebaController implements Initializable {
 
         Label lbNombre = new Label(String.valueOf(cbPrueba.getSelectionModel().getSelectedItem()));
         Label lbCantidad = new Label(tfCantidad.getText());
-        Label lbPrecio = new Label(String.valueOf(Double.valueOf(tfCantidad.getText()) * Double.valueOf(cbPrueba.getSelectionModel().getSelectedItem().getPrecioPrueba())) + "0");
+        Label lbPrecio = new Label(String.valueOf(Double.valueOf(tfCantidad.getText()) * cbPrueba.getSelectionModel().getSelectedItem().getPrecioPrueba()) + "0");
 
         lbNombre.setPrefWidth(100);
         lbNombre.setAlignment(Pos.CENTER);
@@ -161,13 +160,13 @@ public class AgendarPruebaController implements Initializable {
         subtotal += Double.valueOf(lbPrecio.getText());
         lbSubtotal.setText(String.valueOf(subtotal) + "0");
         lbTotal.setText(String.valueOf(Double.valueOf(lbSubtotal.getText()) + 5.0) + "0");
-        /*totalPagar = Double.valueOf(lbTotal.getText());*/
+        totalPagar = Double.valueOf(lbTotal.getText());
 
-        pruebasCitas.add(lbNombre.getText());
+        pruebasCita.add(cbPrueba.getSelectionModel().getSelectedItem());
 
         lbValorUnitario.setText("");
         tfCantidad.clear();
-        return pruebasCitas;
+        return pruebasCita;
     }
 
     @FXML
