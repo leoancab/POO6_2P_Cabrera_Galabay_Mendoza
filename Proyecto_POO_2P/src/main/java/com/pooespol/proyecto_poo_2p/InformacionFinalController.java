@@ -49,6 +49,7 @@ public class InformacionFinalController implements Initializable {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
+                        
                         s.close();
                     }
                 });

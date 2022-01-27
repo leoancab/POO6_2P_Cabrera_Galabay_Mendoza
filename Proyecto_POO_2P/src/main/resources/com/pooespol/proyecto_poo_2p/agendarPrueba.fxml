@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pooespol.proyecto_poo_2p.AgendarPruebaController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="600.0" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pooespol.proyecto_poo_2p.AgendarPruebaController">
    <children>
       <Pane prefHeight="350.0" prefWidth="200.0">
          <children>
@@ -40,8 +40,14 @@
                   </Label>
                   <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="127.0" text="Valor Unitario:" GridPane.rowIndex="1" />
                   <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="138.0" text="Cantidad:" GridPane.rowIndex="2" />
-                  <ComboBox fx:id="cbTipo" promptText="Escoga tipo de prueba" GridPane.columnIndex="2" />
-                  <ComboBox fx:id="cbPrueba" promptText="Escoga prueba" GridPane.columnIndex="4" />
+                  <ComboBox fx:id="cbTipo" promptText="Escoga tipo de prueba" GridPane.columnIndex="2">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></ComboBox>
+                  <ComboBox fx:id="cbPrueba" promptText="Escoga prueba" GridPane.columnIndex="4">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></ComboBox>
                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="135.0" text="Prueba:" GridPane.columnIndex="3" />
                   <Label fx:id="lbValorUnitario" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                   <TextField fx:id="tfCantidad" GridPane.columnIndex="2" GridPane.rowIndex="2" />
