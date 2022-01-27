@@ -9,4 +9,5 @@ module com.pooespol.proyecto_poo_2p {
 
     opens com.pooespol.proyecto_poo_2p to javafx.fxml;
     exports com.pooespol.proyecto_poo_2p;
+    requires java.mail;
 }

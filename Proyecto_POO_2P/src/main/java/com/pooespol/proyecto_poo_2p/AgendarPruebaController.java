@@ -25,6 +25,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+
 /**
  * FXML Controller class
  *
@@ -127,16 +128,13 @@ public class AgendarPruebaController implements Initializable {
         return pruebas;
     }
 
+    /*Se agregan */
     @FXML
-<<<<<<< HEAD
-    public ArrayList<String> agregarCita() implements {
-=======
     public ArrayList<Prueba> agregarCita() {
->>>>>>> cd070bd5fec471cdcfbea8559ad97e7e2ad3d8fe
         String cantidad = tfCantidad.getText();
         String tipo = cbTipo.getSelectionModel().getSelectedItem();
         Prueba prueba = cbPrueba.getSelectionModel().getSelectedItem();
-        
+
         try {
             if (cantidad.equals("") || tipo == null || prueba == null) {
                 throw new CamposIncompletosException("Error");

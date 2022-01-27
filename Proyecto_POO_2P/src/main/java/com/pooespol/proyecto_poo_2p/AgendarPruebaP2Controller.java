@@ -16,6 +16,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Properties;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,6 +32,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  * FXML Controller class
@@ -65,7 +72,7 @@ public class AgendarPruebaP2Controller implements Initializable {
         ubicarPin();
         cbHora.getItems().addAll("07:00", "08:00", "09:00", "10:00", "11:00", "12:00");
     }
-    
+
     public void ubicarPin() {
         root.setOnMouseClicked((MouseEvent t) -> {
             root.getChildren().clear();
@@ -127,7 +134,6 @@ public class AgendarPruebaP2Controller implements Initializable {
                     }
                     bw.write("\n");
                     bw.close();
-                    System.out.println("Escribiendo...");
                 } catch (IOException e) {
                     System.out.println("Error...");
                 }
@@ -167,12 +173,41 @@ public class AgendarPruebaP2Controller implements Initializable {
                 escribirDetalles();
                 mostrarInfo();
                 lbAdvertencia.setText("");
+                enviarCorreo();
             }
         } catch (CamposIncompletosException e) {
             System.out.println("Campos incompletos");
             lbAdvertencia.setText("Campos incompletos");
         }
-
     }
 
+    public void enviarCorreo() {
+        final String user = "VithasLabs@gmail.com";
+        final String contra = "vithaslabs2022";
+
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.user", user);
+        props.put("mail.smtp.clave", contra);
+        Session session = Session.getDefaultInstance(props);
+        MimeMessage message = new MimeMessage(session);
+        try {
+            // Define message
+            message.setFrom(new InternetAddress(user));
+            message.setSubject("asunto");
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress("cgalabay.7@gmail.com"));
+            message.setText("gracias Chuidiang");
+            // Envia el mensaje
+            Transport transport = session.getTransport("smtp");
+            transport.connect("smtp.gmail.com", user, contra);
+            transport.sendMessage(message, message.getAllRecipients());
+            transport.close();
+        } catch (MessagingException me) {
+            me.printStackTrace();
+            System.out.println("error sending mail");
+        }
+    }
 }
