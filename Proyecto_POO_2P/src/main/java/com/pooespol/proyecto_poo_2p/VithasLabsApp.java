@@ -31,8 +31,17 @@ public class VithasLabsApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        
+        try (FileInputStream fis = new FileInputStream(pathImg + "icono.png")) {
+            Image img = new Image(fis);
+            stage.getIcons().add(img);
+        } catch (IOException e) {
+            System.out.println("No se encontro el icono...");
+        }
+        
         FXMLLoader fxmlLoader = new FXMLLoader(VithasLabsApp.class.getResource("inicioSesion.fxml"));
         Parent root = fxmlLoader.load();
+        root.setStyle("-fx-background-color: linear-gradient(#ffffff 20%, #5239d1 )");
         scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Vithas Labs");

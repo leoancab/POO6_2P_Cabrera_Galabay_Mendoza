@@ -43,7 +43,7 @@ public class InicioSesionController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(VithasLabsApp.class.getResource("nuevoPaciente.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
-
+        root.setStyle("-fx-background-color: linear-gradient(#53caeb, #5239d1)");
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
