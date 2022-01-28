@@ -14,13 +14,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -76,7 +74,6 @@ public class AgendarPruebaP2Controller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println("Valor x: " + x + "Valor y: " + y);
         VithasLabsApp.fondo("mapa", ".png", rootMapa);
         ArrayList<Prueba> pruebasCita = AgendarPruebaController.pruebasCita;
         ubicarPin();
@@ -95,7 +92,6 @@ public class AgendarPruebaP2Controller implements Initializable {
             }
             x = t.getX() - 15;
             y = t.getY() - 40;
-            System.out.println("valor x: " + x + "valor y: " + y);
             if ((-40 < y) && (y < rootMapa.getHeight() - 40)) {
                 imageview.setLayoutX(x);
                 imageview.setLayoutY(y);
@@ -122,7 +118,7 @@ public class AgendarPruebaP2Controller implements Initializable {
             ID = crearIdSolicitud();
             horaConsulta = cbHora.getSelectionModel().getSelectedItem();
             fechaConsulta = dpFecha.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-            bw.write(ID + "," + InicioSesionController.userLogin.getUsuario() + "," + tfDireccion.getText() + "," + "," + horaConsulta + "," + (x + 15) + "," + (y + 40) + "," + AgendarPruebaController.totalPagar + "\n");
+            bw.write(ID + "," + InicioSesionController.userLogin.getUsuario() + "," + tfDireccion.getText() + "," + fechaConsulta + "," + horaConsulta + "," + (x + 15) + "," + (y + 40) + "," + AgendarPruebaController.totalPagar + "\n");
             bw.close();
             System.out.println("Escribiendo...");
         } catch (IOException e) {
@@ -135,7 +131,6 @@ public class AgendarPruebaP2Controller implements Initializable {
         FileReader fr = null;
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(VithasLabsApp.pathFile + "detallesSolicitudes.txt", true))) {
-
             bw.write(ID);
             System.out.println(pruebasCita);
             for (Prueba p : pruebasCita) {
@@ -143,13 +138,10 @@ public class AgendarPruebaP2Controller implements Initializable {
                 pruebasSolicitadas += p.getNombrePrueba();
                 pruebasSolicitadas += "\n";
             }
-
             bw.write("\n");
-
         } catch (IOException e) {
             System.out.println("Error...");
         }
-
     }
 
     public void mostrarVentanaInfo() throws IOException {
@@ -168,26 +160,26 @@ public class AgendarPruebaP2Controller implements Initializable {
         LocalDate date = dpFecha.getValue();
         String select = cbHora.getSelectionModel().getSelectedItem();
 
-        System.out.println("Direccion: " + direccion + "fecha: " + date + "Hora: " + select);
+        System.out.println("Direccion: " + direccion + ", Fecha: " + date + ", Hora: " + select);
+
         try {
-            if (direccion.equals("") || date == null || select == null) {
+            if (direccion.equals("") || date == null || select == null || rootMapa.getChildren().isEmpty()) {
                 throw new CamposIncompletosException("Error");
+                //Se verifica que la fecha escogida no sea pasada ni la fecha actual.
+            } else if (dpFecha.getValue().isBefore(LocalDate.now()) || dpFecha.getValue().equals(LocalDate.now())) {
+                System.out.println("Fecha no posible, escoga otra");
+                lbAdvertencia.setText("Fecha no posible, escoga otra");
             } else {
-                //String fecha = date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
                 lbAdvertencia.setText("");
                 escribirContrataciones();
                 escribirDetalles();
-                
                 mostrarVentanaInfo();
-                
                 enviarConGMail(pacienteLogin.getEmail());
-                
                 System.out.println(pruebasSolicitadas);
-
             }
         } catch (CamposIncompletosException e) {
-            System.out.println("Campos incompletos");
-            lbAdvertencia.setText("Campos incompletos");
+            System.out.println("Campos incompletos, no se puede agregar.");
+            lbAdvertencia.setText("Campos incompletos, no se puede agregar.");
         }
     }
 
@@ -234,12 +226,9 @@ public class AgendarPruebaP2Controller implements Initializable {
                 } catch (MessagingException ex) {
                     ex.printStackTrace();
                 }
-
             }
         });
-
         t.setDaemon(true);
         t.start();
-
     }
 }

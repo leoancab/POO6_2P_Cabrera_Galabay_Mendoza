@@ -56,8 +56,6 @@ public class VithasLabsApp extends Application {
     public static void main(String[] args) {
         generarUsuarios(pathFile + "usuarios.txt");
         generarPacientes(pathFile + "pacientes.txt");
-        System.out.println(usuarios);
-        System.out.println(pacientes);
         launch();
     }
 
