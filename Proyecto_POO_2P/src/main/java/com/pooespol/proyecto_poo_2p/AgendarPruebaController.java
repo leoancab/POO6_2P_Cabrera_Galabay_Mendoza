@@ -94,9 +94,10 @@ public class AgendarPruebaController implements Initializable {
     private void setPrecioLabl() {
         Prueba p = cbPrueba.getSelectionModel().getSelectedItem();
         if (p != null) {
-            lbValorUnitario.setText(p.getPrecioPrueba().toString());
+            lbValorUnitario.setText(p.getPrecioPrueba().toString() + "0");
         }
     }
+
     /*Lee el archivo de pruebas y gerera la lista de pruebas
     y retorna la lista de pruebas.*/
     public ArrayList<Prueba> crearPruebas() {
@@ -127,53 +128,73 @@ public class AgendarPruebaController implements Initializable {
         return pruebas;
     }
 
+    /*Se agregan */
     @FXML
+<<<<<<< HEAD
 
 
     public ArrayList<Prueba> agregarCita() {
 
+=======
+    public ArrayList<Prueba> agregarCita() {
+>>>>>>> b8990667cd33190e388c55ee4eba6fae8fe985ef
         String cantidad = tfCantidad.getText();
         String tipo = cbTipo.getSelectionModel().getSelectedItem();
         Prueba prueba = cbPrueba.getSelectionModel().getSelectedItem();
 
         try {
+            //Se verifica si el texto ingresado al textfield sea un numero.
+            Integer.valueOf(cantidad);
+            //Se comprueba que los campos no esten vacios.
             if (cantidad.equals("") || tipo == null || prueba == null) {
-                throw new CamposIncompletosException("Hola");
+                throw new CamposIncompletosException("Error");
+                //Si la cantidad ingresada es menos a 1, se avisa.
+            } else if (Integer.valueOf(cantidad) < 1) {
+                System.out.println("Cantidad no puede ser menor a 1");
+                lbAdvertencia.setText("Cantidad no puede ser menor a 1");
+                //Si los campos estan llenos, se prosigue.
+            } else {
+                Label lbNombre = new Label(String.valueOf(cbPrueba.getSelectionModel().getSelectedItem()));
+                Label lbCantidad = new Label(tfCantidad.getText());
+                Label lbPrecio = new Label(String.valueOf(Double.valueOf(tfCantidad.getText()) * cbPrueba.getSelectionModel().getSelectedItem().getPrecioPrueba()) + "0");
+
+                lbNombre.setPrefWidth(100);
+                lbNombre.setAlignment(Pos.CENTER);
+                lbCantidad.setPrefWidth(100);
+                lbCantidad.setAlignment(Pos.CENTER);
+                lbPrecio.setPrefWidth(100);
+                lbPrecio.setAlignment(Pos.CENTER);
+
+                gpDetalle.addColumn(0, lbNombre);
+                gpDetalle.addColumn(1, lbCantidad);
+                gpDetalle.addColumn(2, lbPrecio);
+
+                subtotal += Double.valueOf(lbPrecio.getText());
+                lbSubtotal.setText(String.valueOf(subtotal) + "0");
+                lbTotal.setText(String.valueOf(Double.valueOf(lbSubtotal.getText()) + 5.0) + "0");
+                totalPagar = Double.valueOf(lbTotal.getText());
+
+                pruebasCita.add(cbPrueba.getSelectionModel().getSelectedItem());
+
+                lbValorUnitario.setText("");
+                tfCantidad.clear();
+                lbAdvertencia.setText("");
             }
+            //Se atrapa la excepcion en el caso de que los campos no esten llenos.
         } catch (CamposIncompletosException e) {
-            System.out.println("Campos incompletos");
-            lbAdvertencia.setText("Campos incompletos");
+            System.out.println("Campos incompletos, no se puede agregar");
+            lbAdvertencia.setText("Campos incompletos, no se puede agregar");
+            //Se atrapa la excepcion en el caso de que el texto ingresado a cantidad no sea un numero.
+        } catch (NumberFormatException e) {
+            System.out.println("Texto ingresado no es un numero");
+            lbAdvertencia.setText("Texto ingresado no es un numero");
         }
-
-        Label lbNombre = new Label(String.valueOf(cbPrueba.getSelectionModel().getSelectedItem()));
-        Label lbCantidad = new Label(tfCantidad.getText());
-        Label lbPrecio = new Label(String.valueOf(Double.valueOf(tfCantidad.getText()) * cbPrueba.getSelectionModel().getSelectedItem().getPrecioPrueba()) + "0");
-
-        lbNombre.setPrefWidth(100);
-        lbNombre.setAlignment(Pos.CENTER);
-        lbCantidad.setPrefWidth(100);
-        lbCantidad.setAlignment(Pos.CENTER);
-        lbPrecio.setPrefWidth(100);
-        lbPrecio.setAlignment(Pos.CENTER);
-
-        gpDetalle.addColumn(0, lbNombre);
-        gpDetalle.addColumn(1, lbCantidad);
-        gpDetalle.addColumn(2, lbPrecio);
-
-        subtotal += Double.valueOf(lbPrecio.getText());
-        lbSubtotal.setText(String.valueOf(subtotal) + "0");
-        lbTotal.setText(String.valueOf(Double.valueOf(lbSubtotal.getText()) + 5.0) + "0");
-        totalPagar = Double.valueOf(lbTotal.getText());
-
-        pruebasCita.add(cbPrueba.getSelectionModel().getSelectedItem());
-
-        lbValorUnitario.setText("");
-        tfCantidad.clear();
         return pruebasCita;
     }
 
     @FXML
     public void continuar() throws IOException {
+        System.out.println(pruebasCita);
         FXMLLoader fxmlLoader = new FXMLLoader(VithasLabsApp.class.getResource("agendarPruebaP2.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);

@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -25,14 +26,18 @@ public class OpcionesController implements Initializable {
 
     @FXML
     private Label l_bienvenida;
+    @FXML
+    private VBox root;
 
     /**
      * Initializes the controller class.
+     *
      * @param url
      * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        VithasLabsApp.fondo("fondoPaciente", ".jpg", root);
         String nombres = InicioSesionController.pacienteLogin.getNombres();
         l_bienvenida.setText("Bienvenido " + nombres);
     }

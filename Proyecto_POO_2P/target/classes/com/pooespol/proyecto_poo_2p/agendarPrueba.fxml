@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pooespol.proyecto_poo_2p.AgendarPruebaController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(#53caeb, #5239d1);" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pooespol.proyecto_poo_2p.AgendarPruebaController">
    <children>
       <Pane prefHeight="350.0" prefWidth="200.0">
          <children>
@@ -40,8 +40,14 @@
                   </Label>
                   <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="127.0" text="Valor Unitario:" GridPane.rowIndex="1" />
                   <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="138.0" text="Cantidad:" GridPane.rowIndex="2" />
-                  <ComboBox fx:id="cbTipo" promptText="Escoga tipo de prueba" GridPane.columnIndex="2" />
-                  <ComboBox fx:id="cbPrueba" promptText="Escoga prueba" GridPane.columnIndex="4" />
+                  <ComboBox fx:id="cbTipo" promptText="Escoga tipo de prueba" GridPane.columnIndex="2">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></ComboBox>
+                  <ComboBox fx:id="cbPrueba" promptText="Escoga prueba" GridPane.columnIndex="4">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></ComboBox>
                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="135.0" text="Prueba:" GridPane.columnIndex="3" />
                   <Label fx:id="lbValorUnitario" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                   <TextField fx:id="tfCantidad" GridPane.columnIndex="2" GridPane.rowIndex="2" />
@@ -49,7 +55,7 @@
             </GridPane>
             <HBox alignment="BOTTOM_CENTER" prefHeight="50.0" prefWidth="600.0">
                <children>
-                  <Label text="Agende su cita" textFill="#1100ff">
+                  <Label text="Agende su cita" textFill="#4673db">
                      <font>
                         <Font name="Arial Bold" size="30.0" />
                      </font>
@@ -67,13 +73,17 @@
                      </font></Button>
                </children>
             </HBox>
-            <Separator layoutY="349.0" prefWidth="580.0" />
             <Label fx:id="lbAdvertencia" layoutX="50.0" layoutY="228.0" textFill="#fc0000">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
          </children>
       </Pane>
+      <Separator prefWidth="200.0">
+         <padding>
+            <Insets left="10.0" right="10.0" />
+         </padding>
+      </Separator>
       <Pane prefHeight="350.0" prefWidth="200.0">
          <children>
             <GridPane layoutX="280.0" layoutY="200.0" prefHeight="90.0" prefWidth="230.0">

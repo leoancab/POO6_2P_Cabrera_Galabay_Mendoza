@@ -20,10 +20,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class InicioSesionController implements Initializable{
+public class InicioSesionController implements Initializable {
+
     public static Usuario userLogin;
     public static Paciente pacienteLogin;
-    
+
     @FXML
     private TextField txt_Usuario;
     @FXML
@@ -32,43 +33,40 @@ public class InicioSesionController implements Initializable{
     private Button btn_IniciarSesion;
     @FXML
     private Label l_mensaje;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
     }
 
     @FXML
-    private void crearNuevaCuenta(MouseEvent event) throws IOException{ 
+    private void crearNuevaCuenta(MouseEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(VithasLabsApp.class.getResource("nuevoPaciente.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
-        
+        root.setStyle("-fx-background-color: linear-gradient(#53caeb, #5239d1)");
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
-        
+
     }
-    
+
     @FXML
     private void iniciarSesion(ActionEvent event) throws IOException {
         String usuario = txt_Usuario.getText();
         String password = txt_Password.getText();
-        
-        if (validarUsuario(usuario, password)){
-        VithasLabsApp.setRoot("opciones");
-    } else {
+
+        if (validarUsuario(usuario, password)) {
+            VithasLabsApp.setRoot("opciones");
+        } else {
             l_mensaje.setText("Usuario o contraseña incorrectos, por favor intentelo de nuevo.");
             l_mensaje.setStyle("-fx-text-fill: Red");
             l_mensaje.setFont(new Font("Arial", 14));
         }
-        
     }
-    
+
     private static boolean validarUsuario(String usuario, String password) {
         ArrayList<Usuario> users = VithasLabsApp.usuarios;
-        
-        for (Usuario u: users) {
+        for (Usuario u : users) {
             String user = u.getUsuario();
             String contrasenia = u.getContraseña();
             if (user.equals(usuario) && contrasenia.equals(password)) {
@@ -79,8 +77,9 @@ public class InicioSesionController implements Initializable{
         }
         return false;
     }
+
     private static void generarPaciente(Usuario u, ArrayList<Paciente> listaP) {
-        for (Paciente p: listaP) {
+        for (Paciente p : listaP) {
             if (p.getUsuario().equals(u.getUsuario())) {
                 pacienteLogin = p;
             }
