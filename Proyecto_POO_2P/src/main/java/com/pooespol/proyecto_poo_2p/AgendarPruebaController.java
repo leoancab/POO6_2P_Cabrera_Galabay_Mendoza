@@ -130,6 +130,7 @@ public class AgendarPruebaController implements Initializable {
 
     /*Se agregan */
     @FXML
+<<<<<<< HEAD
 
 
 
@@ -138,6 +139,9 @@ public class AgendarPruebaController implements Initializable {
 
     public ArrayList<Prueba> agregarCita() {
 
+=======
+    public ArrayList<Prueba> agregarCita() {
+>>>>>>> 26b2764b8f195d0dfb069db55be298a60d5fc516
         String cantidad = tfCantidad.getText();
         String tipo = cbTipo.getSelectionModel().getSelectedItem();
         Prueba prueba = cbPrueba.getSelectionModel().getSelectedItem();

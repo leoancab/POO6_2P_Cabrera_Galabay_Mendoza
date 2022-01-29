@@ -106,6 +106,7 @@ public class OpcionesLaboratoristaController implements Initializable {
             System.out.println("No se ha podido leer el archivo");
         }
             
+<<<<<<< HEAD
         try(ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(VithasLabsApp.pathFile + "PruebasSolicitadas.txt"))){  
             salida.writeObject(lPaciente);
         
@@ -144,5 +145,22 @@ public class OpcionesLaboratoristaController implements Initializable {
     
             
         
+=======
+         /*try{  
+        FileOutputStream fos = new FileOutputStream(VithasLabsApp.pathFile+"PacientesCita.txt");
+        ObjectOutputStream salida = new ObjectOutputStream(fos);
+        for()
+        
+        
+         }catch(IOException e){
+             
+         }*/
+   
+            
+            
+            
+        }
+}
+>>>>>>> 26b2764b8f195d0dfb069db55be298a60d5fc516
          
          

@@ -110,7 +110,7 @@ public class NuevoPacienteController extends ArchivoRW implements Initializable 
         if (i > 0 || elegido == null || datePicker == null) {
 
             l_mensaje.setText("Existen campos vacios, complete todos los datos para poder registrarse.");
-            l_mensaje.setStyle("-fx-text-fill: Red");
+            l_mensaje.setStyle("-fx-text-fill: white");
         } else {
             //Damos formato al label por medio de la programación.
             l_mensaje.setText("Usuario registrado");
