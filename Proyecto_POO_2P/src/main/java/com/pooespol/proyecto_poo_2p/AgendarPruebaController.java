@@ -94,7 +94,7 @@ public class AgendarPruebaController implements Initializable {
     private void setPrecioLabl() {
         Prueba p = cbPrueba.getSelectionModel().getSelectedItem();
         if (p != null) {
-            lbValorUnitario.setText(p.getPrecioPrueba().toString());
+            lbValorUnitario.setText(p.getPrecioPrueba().toString() + "0");
         }
     }
 
@@ -136,8 +136,16 @@ public class AgendarPruebaController implements Initializable {
         Prueba prueba = cbPrueba.getSelectionModel().getSelectedItem();
 
         try {
+            //Se verifica si el texto ingresado al textfield sea un numero.
+            Integer.valueOf(cantidad);
+            //Se comprueba que los campos no esten vacios.
             if (cantidad.equals("") || tipo == null || prueba == null) {
                 throw new CamposIncompletosException("Error");
+                //Si la cantidad ingresada es menos a 1, se avisa.
+            } else if (Integer.valueOf(cantidad) < 1) {
+                System.out.println("Cantidad no puede ser menor a 1");
+                lbAdvertencia.setText("Cantidad no puede ser menor a 1");
+                //Si los campos estan llenos, se prosigue.
             } else {
                 Label lbNombre = new Label(String.valueOf(cbPrueba.getSelectionModel().getSelectedItem()));
                 Label lbCantidad = new Label(tfCantidad.getText());
@@ -165,9 +173,14 @@ public class AgendarPruebaController implements Initializable {
                 tfCantidad.clear();
                 lbAdvertencia.setText("");
             }
+            //Se atrapa la excepcion en el caso de que los campos no esten llenos.
         } catch (CamposIncompletosException e) {
-            System.out.println("Campos incompletos");
-            lbAdvertencia.setText("Campos incompletos");
+            System.out.println("Campos incompletos, no se puede agregar");
+            lbAdvertencia.setText("Campos incompletos, no se puede agregar");
+            //Se atrapa la excepcion en el caso de que el texto ingresado a cantidad no sea un numero.
+        } catch (NumberFormatException e) {
+            System.out.println("Texto ingresado no es un numero");
+            lbAdvertencia.setText("Texto ingresado no es un numero");
         }
         return pruebasCita;
     }

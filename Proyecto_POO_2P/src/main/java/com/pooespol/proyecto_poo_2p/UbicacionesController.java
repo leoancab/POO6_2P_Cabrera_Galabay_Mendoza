@@ -22,7 +22,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -151,7 +150,6 @@ public class UbicacionesController implements Initializable {
     private void setInfoVentana(Stage stage, Label contador) {
         for (int i = 5; i > 0; i--) {
             String status = "Mostrando " + i + " segundos...";
-            System.out.println(status);
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {

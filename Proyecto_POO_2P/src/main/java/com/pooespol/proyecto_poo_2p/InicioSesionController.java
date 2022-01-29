@@ -1,5 +1,6 @@
 package com.pooespol.proyecto_poo_2p;
 
+import static com.pooespol.proyecto_poo_2p.VithasLabsApp.setIcono;
 import com.pooespol.proyecto_poo_2p.modelo.usuarios.Paciente;
 import com.pooespol.proyecto_poo_2p.modelo.usuarios.Usuario;
 import java.io.IOException;
@@ -36,6 +37,7 @@ public class InicioSesionController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
     }
 
     @FXML
@@ -46,6 +48,9 @@ public class InicioSesionController implements Initializable {
         root.setStyle("-fx-background-color: linear-gradient(#53caeb, #5239d1)");
         Stage stage = new Stage();
         stage.setScene(scene);
+        stage.setResizable(false);
+        stage.setTitle("Vithas Labs - Crear Nueva Cuenta");
+        setIcono(stage);
         stage.show();
 
     }
@@ -59,7 +64,7 @@ public class InicioSesionController implements Initializable {
             VithasLabsApp.setRoot("opciones");
         } else {
             l_mensaje.setText("Usuario o contraseña incorrectos, por favor intentelo de nuevo.");
-            l_mensaje.setStyle("-fx-text-fill: Red");
+            l_mensaje.setStyle("-fx-text-fill: white");
             l_mensaje.setFont(new Font("Arial", 14));
         }
     }
