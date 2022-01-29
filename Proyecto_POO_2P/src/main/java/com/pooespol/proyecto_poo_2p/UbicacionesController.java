@@ -118,6 +118,7 @@ public class UbicacionesController implements Initializable {
         control.setPrefHeight(75);
         control.setPadding(new Insets(25));
         control.setSpacing(110);
+        popUp.setStyle("-fx-background-color: #73d2ff");
 
         Scene scene = new Scene(popUp);
         Stage stage = new Stage();
