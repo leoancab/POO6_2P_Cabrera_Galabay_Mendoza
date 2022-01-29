@@ -10,6 +10,7 @@ import com.pooespol.proyecto_poo_2p.modelo.usuarios.Genero;
 import com.pooespol.proyecto_poo_2p.modelo.usuarios.Paciente;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -24,6 +25,13 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import java.util.ArrayList;
 import java.util.Date;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -98,19 +106,43 @@ public class OpcionesLaboratoristaController implements Initializable {
             System.out.println("No se ha podido leer el archivo");
         }
             
-         *//try{  
-        FileOutputStream fos = new FileOutputStream(VithasLabsApp.pathFile+"PacientesCita.txt");
-        ObjectOutputStream salida = new ObjectOutputStream(fos);
-        for()
-        
+        try(ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(VithasLabsApp.pathFile + "PruebasSolicitadas.txt"))){  
+            salida.writeObject(lPaciente);
         
          }catch(IOException e){
              
-         }/*
-   
-            
-            
+         }
+    }
+        @FXML
+        private Label l_bienvenida;
+        @FXML
+        private Label Mensaje;
+
+        @FXML
+        private void MensajeAlerta(ActionEvent event){
+        
+            File arch = new File(VithasLabsApp.pathFile+"PacientesCita.txt");
+            if(arch.length() == 0){
+                Mensaje.setText("Debe generar el consolidado antes de consultar");
+            }
+        }
+        
+
+        @FXML
+        private void consultarCitas(ActionEvent event) throws IOException {
+            Stage s = new Stage();
+            FXMLLoader fx = new FXMLLoader(VithasLabsApp.class.getResource("consultaCitas.fxml"));
+            Parent root = fx.load();
+            Scene sc = new Scene(root);
+            s.setScene(sc);
+            s.show();
             
         }
+    
+
+}
+    
+            
+        
          
          

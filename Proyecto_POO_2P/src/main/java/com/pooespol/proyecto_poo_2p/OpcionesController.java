@@ -8,6 +8,7 @@ package com.pooespol.proyecto_poo_2p;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -25,9 +26,12 @@ import javafx.stage.Stage;
 public class OpcionesController implements Initializable {
 
     @FXML
-    private Label l_bienvenida;
-    @FXML
     private VBox root;
+    @FXML
+    private Label l_bienvenida;
+
+  
+   
 
     /**
      * Initializes the controller class.
@@ -39,7 +43,7 @@ public class OpcionesController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         VithasLabsApp.fondo("fondoPaciente", ".jpg", root);
         String nombres = InicioSesionController.pacienteLogin.getNombres();
-        l_bienvenida.setText("Bienvenido " + nombres);
+        
     }
 
     @FXML
@@ -62,4 +66,6 @@ public class OpcionesController implements Initializable {
         stage2.show();
     }
 
+    
 }
+  

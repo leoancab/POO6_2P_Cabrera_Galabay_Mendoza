@@ -231,6 +231,7 @@ public class AgendarPruebaP2Controller implements Initializable {
         t.setDaemon(true);
         t.start();
     }
+}
     
-}        escribirDetalles();
+
 
