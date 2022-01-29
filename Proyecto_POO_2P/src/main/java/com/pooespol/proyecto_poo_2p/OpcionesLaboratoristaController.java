@@ -6,7 +6,12 @@
 package com.pooespol.proyecto_poo_2p;
 
 import com.pooespol.proyecto_poo_2p.modelo.Prueba;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import java.util.ArrayList;
@@ -26,9 +31,19 @@ public class OpcionesLaboratoristaController implements Initializable {
         // TODO
     }    
     
-    public void serializarCitas(ArrayList<Prueba> pruebas){
-        
-    }
+    public void serializarCitas(){
+        try{
+            fr = new FileReader(, StandardCharsets.UTF_8);
+            br = new BufferedReader(fr);
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String id = linea.split(",")[0];
+                FileWriter fw = null;
+                BufferedWriter bw = null;
+        }catch{
+                
+                }
+    
         
     
 }

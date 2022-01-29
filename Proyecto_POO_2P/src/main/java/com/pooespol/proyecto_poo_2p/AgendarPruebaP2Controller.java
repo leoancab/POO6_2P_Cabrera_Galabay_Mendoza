@@ -170,4 +170,6 @@ public class AgendarPruebaP2Controller implements Initializable {
         escribirDetalles();
         mostrarInfo();
     }
-}
+    
+}        escribirDetalles();
+
