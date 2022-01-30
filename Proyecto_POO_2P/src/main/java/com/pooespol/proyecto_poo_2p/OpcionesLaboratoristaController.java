@@ -30,7 +30,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -40,88 +42,92 @@ import javafx.stage.Stage;
  */
 public class OpcionesLaboratoristaController implements Initializable {
 
+    @FXML
+    private VBox root;
+    @FXML
+    private Label l_bienvenida;
+    @FXML
+    private Label Advertencia;
+    @FXML
+    private Button btnGCC;
+    @FXML
+    private Button btnConsultarCitas;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
-    
-    
- 
-    public void SerializarCitas() throws ParseException, FileNotFoundException, IOException{
-        ArrayList<String> lUsuarios = new ArrayList<String>();
-        ArrayList<Paciente> lPaciente = new ArrayList<Paciente>();
-        
-        try{
-            FileReader fr = new FileReader(VithasLabsApp.pathFile+"Contrataciones.txt");
-            BufferedReader bf = new BufferedReader(fr);
-            String linea;
-            
-            while((linea = bf.readLine()) != null){
-                lUsuarios.add(linea.split(",")[1]);  
-            }
-        } catch(IOException e){
-            System.out.println("No se ha podido leer el archivo");
-        }
-        
-            try{
-            FileReader fr = new FileReader(VithasLabsApp.pathFile+"pacientes.txt");
-            BufferedReader bf = new BufferedReader(fr);
-            String linea;
-            
-            SimpleDateFormat formato = new SimpleDateFormat("dd/mm/yyyy");
-            while((linea = bf.readLine()) != null){
-                Paciente p = new Paciente(linea.split(",")[0],linea.split(",")[1],linea.split(",")[2],linea.split(",")[3],
-                formato.parse(linea.split(",")[4]),Genero.valueOf(linea.split(",")[5]),linea.split(",")[6],linea.split(",")[7],linea.split(",")[8]);
-                 for(String u: lUsuarios){
-                    if (u.equals(linea.split(",")[0])){
-                        lPaciente.add(p);
-                        
-                    }
-            }
-           
-            }
-        } catch(IOException e){
-            System.out.println("No se ha podido leer el archivo");
-        }
-            
-        try(ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(VithasLabsApp.pathFile + "PruebasSolicitadas.txt"))){  
-            salida.writeObject(lPaciente);
-        
-         }catch(IOException e){
-             
-         }
+        VithasLabsApp.fondo("fondoPaciente", ".jpg", root);
+        String userLab = InicioSesionController.userLogin.getUsuario();
+        l_bienvenida.setText("Bienvenido " + userLab);
     }
-        @FXML
-        private Label l_bienvenida;
-        @FXML
-        private Label Mensaje;
 
-        @FXML
-        private void MensajeAlerta(ActionEvent event){
+    
+
+//    private void MensajeAlerta(ActionEvent event) {
+//
+//        File arch = new File(VithasLabsApp.pathFile + "PacientesCita.txt");
+//        if (arch.length() == 0) {
+//            Mensaje.setText("Debe generar el consolidado antes de consultar");
+//        }
+//    }
+
+    @FXML
+    private void consultarCitas(ActionEvent event) throws IOException {
+        File archivo = new File(VithasLabsApp.pathFile + "pruebasSolicitadas.xd");
+        System.out.println(archivo.exists());
+        if (archivo.exists()){
+            
+        Stage s = new Stage();
+        FXMLLoader fx = new FXMLLoader(VithasLabsApp.class.getResource("consultaCitas.fxml"));
+        Parent root = fx.load();
+        Scene sc = new Scene(root);
+        s.setScene(sc);
+        s.show();
+            
+        } else {
+             Advertencia.setText("ADVERTENCIA: Debe generar el consolidado antes de consultar");
+        }
+
+    }
+
+    @FXML
+    private void serializarCitas(ActionEvent event) throws ParseException {
+
+        ArrayList<String> lUsuarios = new ArrayList<String>();
+        //ArrayList<Paciente> lPaciente = VithasLabsApp.pacientes;
+        ArrayList<Paciente> pacientesConCitas = new ArrayList<Paciente>();
         
-            File arch = new File(VithasLabsApp.pathFile+"PacientesCita.txt");
-            if(arch.length() == 0){
-                Mensaje.setText("Debe generar el consolidado antes de consultar");
+        
+        //Guardas los nombres que contrataron el servicio en la lista lUsuarios
+        try {
+            FileReader fr = new FileReader(VithasLabsApp.pathFile + "ContratacionesPruebas.txt");
+            BufferedReader bf = new BufferedReader(fr);
+            String linea;
+
+            while ((linea = bf.readLine()) != null) {
+                lUsuarios.add(linea.split(",")[1]);
+            }
+        } catch (IOException e) {
+            System.out.println("No se ha podido leer el archivo");
+        }
+
+        for(Paciente p: VithasLabsApp.pacientes) {
+            for (String u: lUsuarios) {
+                if (p.getUsuario().equals(u))
+                    pacientesConCitas.add(p);
             }
         }
         
+        //Serealizar listas pacientesConCitas
+        try (ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(VithasLabsApp.pathFile + "pruebasSolicitadas.xd"))) {
+            salida.writeObject(pacientesConCitas);
 
-        @FXML
-        private void consultarCitas(ActionEvent event) throws IOException {
-            Stage s = new Stage();
-            FXMLLoader fx = new FXMLLoader(VithasLabsApp.class.getResource("consultaCitas.fxml"));
-            Parent root = fx.load();
-            Scene sc = new Scene(root);
-            s.setScene(sc);
-            s.show();
-            
+        } catch (IOException e) {
+
         }
-    
+
+    }
 
 }
-         
-         

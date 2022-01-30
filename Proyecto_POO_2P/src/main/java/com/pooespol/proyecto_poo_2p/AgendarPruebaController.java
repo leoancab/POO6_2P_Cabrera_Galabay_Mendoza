@@ -149,9 +149,12 @@ public class AgendarPruebaController implements Initializable {
                 //Si los campos estan llenos, se prosigue.
             } else {
                 Label lbNombre = new Label(String.valueOf(cbPrueba.getSelectionModel().getSelectedItem()));
+                lbNombre.setStyle("-fx-text-fill: white");
                 Label lbCantidad = new Label(tfCantidad.getText());
+                lbCantidad.setStyle("-fx-text-fill: white");
                 Label lbPrecio = new Label(String.valueOf(Double.valueOf(tfCantidad.getText()) * cbPrueba.getSelectionModel().getSelectedItem().getPrecioPrueba()) + "0");
-
+                lbPrecio.setStyle("-fx-text-fill: white");
+                
                 lbNombre.setPrefWidth(100);
                 lbNombre.setAlignment(Pos.CENTER);
                 lbCantidad.setPrefWidth(100);

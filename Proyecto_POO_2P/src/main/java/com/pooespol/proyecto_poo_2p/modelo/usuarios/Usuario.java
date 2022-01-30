@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 
 /**
  *
@@ -56,6 +57,7 @@ public class Usuario {
     }
     
     public static void generarUsuarios(String nomArchivo) {
+        ArrayList<Usuario> usuariosL = new ArrayList();
         BufferedReader br = null;
         FileReader fr = null;
         try {
@@ -71,7 +73,7 @@ public class Usuario {
                 Usuario u = new Usuario(usuario, pswrd, tipo);
                 
                 //Agregamos el objeto creado a la lista de usuarios del main.
-                VithasLabsApp.usuarios.add(u);
+                usuariosL.add(u);
 
             
             }
@@ -90,6 +92,8 @@ public class Usuario {
             }
             
         }
+        
+        VithasLabsApp.usuarios = usuariosL;
     }
     
 }

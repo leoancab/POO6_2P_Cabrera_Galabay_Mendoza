@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 /**
  *
@@ -118,6 +119,7 @@ public class Paciente {
     }
     
     public static void generarPacientes(String nomArchivo) {
+        ArrayList<Paciente> pacientesL = new ArrayList();
         BufferedReader br = null;
         FileReader fr = null;
         try {
@@ -149,7 +151,7 @@ public class Paciente {
                 Paciente p = new Paciente(usuario, cedula, nombres, apellidos, fecha, genero, ciudad, email, telefono);
                 
                 //Agregamos el objeto creado a la lista de usuarios del main.
-                VithasLabsApp.pacientes.add(p);
+                pacientesL.add(p);
 
             
             }
@@ -168,6 +170,9 @@ public class Paciente {
             }
             
         }
+        
+        VithasLabsApp.pacientes = pacientesL;
+        
     }
     
 }

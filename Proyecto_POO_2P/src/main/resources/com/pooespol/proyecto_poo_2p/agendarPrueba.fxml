@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(#53caeb, #5239d1);" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pooespol.proyecto_poo_2p.AgendarPruebaController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(#92d0ff, #5239d1);" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pooespol.proyecto_poo_2p.AgendarPruebaController">
    <children>
       <Pane prefHeight="350.0" prefWidth="200.0">
          <children>
@@ -124,9 +124,9 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbSubtotal" alignment="TOP_RIGHT" prefHeight="17.0" prefWidth="86.0" GridPane.columnIndex="1" />
-                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="107.0" text="5.00" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label fx:id="lbTotal" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="96.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="lbSubtotal" alignment="TOP_RIGHT" prefHeight="17.0" prefWidth="86.0" textFill="WHITE" GridPane.columnIndex="1" />
+                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="107.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="lbTotal" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="96.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
             <HBox alignment="CENTER_LEFT" layoutX="50.0" prefHeight="50.0" prefWidth="500.0">

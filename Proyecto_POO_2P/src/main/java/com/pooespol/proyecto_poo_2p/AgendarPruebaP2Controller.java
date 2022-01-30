@@ -65,7 +65,7 @@ public class AgendarPruebaP2Controller implements Initializable {
 
     @FXML
     private Pane rootMapa;
-    
+
     private int control = -1;
 
     /**
@@ -115,7 +115,7 @@ public class AgendarPruebaP2Controller implements Initializable {
         FileWriter fw = null;
         BufferedWriter bw = null;
         try {
-            fw = new FileWriter(VithasLabsApp.pathFile + "contratatacionesPruebas.txt", true);
+            fw = new FileWriter(VithasLabsApp.pathFile + "contratacionesPruebas.txt", true);
             bw = new BufferedWriter(fw);
             ID = crearIdSolicitud();
             horaConsulta = cbHora.getSelectionModel().getSelectedItem();
@@ -174,11 +174,11 @@ public class AgendarPruebaP2Controller implements Initializable {
             } else {
                 control += 1;
                 lbAdvertencia.setText("");
-                escribirContrataciones();
-                escribirDetalles();
                 mostrarVentanaInfo();
                 if (control <= 0) {
-                enviarConGMail(pacienteLogin.getEmail());
+                    escribirContrataciones();
+                    escribirDetalles();
+                    enviarConGMail(pacienteLogin.getEmail());
                 }
                 System.out.println(pruebasSolicitadas);
             }
@@ -206,12 +206,12 @@ public class AgendarPruebaP2Controller implements Initializable {
                 final String correoEnvia = "vithaslabs7@gmail.com";
                 final String contrasenia = "VithasLabsApp12345";
                 String dest = correoReceptor; //"ycjimbo@espol.edu.ec"
-                String asunto = "Correo de prueba";
-                String msg = "Fecha: " + fechaConsulta + "\n"
-                        + "Hora: " + horaConsulta + "\n"
+                String asunto = "Información de compra - Vithas Labs";
+                String msg = "Datos de la cita:\nFecha: " + fechaConsulta + "\n"
+                        + "Hora: " + horaConsulta + "\n\n"
                         + "PRUEBAS SOLICITADAS:\n"
                         + pruebasSolicitadas + "\n"
-                        + "Codigo: " + ID;
+                        + "Código de compra: " + ID;
 
                 MimeMessage mail = new MimeMessage(sesion);
 
@@ -236,6 +236,5 @@ public class AgendarPruebaP2Controller implements Initializable {
         t.setDaemon(true);
         t.start();
     }
-}
-    
 
+}

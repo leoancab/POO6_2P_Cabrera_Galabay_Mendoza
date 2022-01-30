@@ -9,5 +9,5 @@ package com.pooespol.proyecto_poo_2p.modelo.usuarios;
  * @author leonel
  */
 public enum Genero {
-    Femenino,Masculino,Otro;
+    Femenino,Masculino,Otros;
 }

@@ -2,6 +2,7 @@ package com.pooespol.proyecto_poo_2p;
 
 import static com.pooespol.proyecto_poo_2p.VithasLabsApp.setIcono;
 import com.pooespol.proyecto_poo_2p.modelo.usuarios.Paciente;
+import com.pooespol.proyecto_poo_2p.modelo.usuarios.TipoUsuario;
 import com.pooespol.proyecto_poo_2p.modelo.usuarios.Usuario;
 import java.io.IOException;
 import java.net.URL;
@@ -61,7 +62,12 @@ public class InicioSesionController implements Initializable {
         String password = txt_Password.getText();
 
         if (validarUsuario(usuario, password)) {
+            if (userLogin.getTipoUsuario().equals(TipoUsuario.P))
             VithasLabsApp.setRoot("opciones");
+            else 
+                VithasLabsApp.setRoot("opcionesLaboratorista");
+            
+                
         } else {
             l_mensaje.setText("Usuario o contraseña incorrectos, por favor intentelo de nuevo.");
             l_mensaje.setStyle("-fx-text-fill: white");

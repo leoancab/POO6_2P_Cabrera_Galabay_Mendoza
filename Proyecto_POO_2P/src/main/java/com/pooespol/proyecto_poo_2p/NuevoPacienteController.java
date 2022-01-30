@@ -5,7 +5,10 @@
  */
 package com.pooespol.proyecto_poo_2p;
 
+import static com.pooespol.proyecto_poo_2p.VithasLabsApp.pathFile;
 import com.pooespol.proyecto_poo_2p.modelo.ArchivoRW;
+import static com.pooespol.proyecto_poo_2p.modelo.usuarios.Paciente.generarPacientes;
+import static com.pooespol.proyecto_poo_2p.modelo.usuarios.Usuario.generarUsuarios;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -114,7 +117,7 @@ public class NuevoPacienteController extends ArchivoRW implements Initializable 
         } else {
             //Damos formato al label por medio de la programación.
             l_mensaje.setText("Usuario registrado");
-            l_mensaje.setStyle("-fx-text-fill: #5888ee");
+            l_mensaje.setStyle("-fx-text-fill: white");
 
             /*
             Obtenemos la informacion de cada uno de los cmapos solicitados
@@ -135,11 +138,15 @@ public class NuevoPacienteController extends ArchivoRW implements Initializable 
             //Se generan los registros en ambos archivos:
             //Registrar informacion en usurarios.txt
             escribir(VithasLabsApp.pathFile + "usuarios.txt", (usuario + "," + pw + ",P"));
+            generarUsuarios(pathFile + "usuarios.txt");
             //Registrar informacion en pacientes.txt
             String info = usuario + "," + cedula + "," + nombres + "," + apellidos
                     + "," + fecha + "," + gender + "," + ciudad + "," + email + ","
                     + telefono;
             escribir(VithasLabsApp.pathFile + "pacientes.txt", info);
+            generarPacientes(pathFile + "pacientes.txt");
+            
+            
         }
     }
 }

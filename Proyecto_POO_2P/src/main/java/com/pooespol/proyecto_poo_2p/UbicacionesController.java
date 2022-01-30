@@ -4,6 +4,7 @@
  */
 package com.pooespol.proyecto_poo_2p;
 
+import static com.pooespol.proyecto_poo_2p.VithasLabsApp.setIcono;
 import com.pooespol.proyecto_poo_2p.modelo.Local;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -25,6 +26,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 /**
@@ -46,6 +49,7 @@ public class UbicacionesController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         VithasLabsApp.fondo("mapa", ".png", root);
         mostrarLocales();
     }
@@ -97,11 +101,19 @@ public class UbicacionesController implements Initializable {
     public void mostrarVentana(String nombre, String direccion) {
         //Crear labels
         Label lNombre = new Label(nombre);
+        lNombre.setFont(Font.font("Arial", FontWeight.NORMAL, 14));
+        lNombre.setStyle("-fx-text-fill: white");
         Label lDireccion = new Label(direccion);
+        lDireccion.setFont(Font.font("Arial", FontWeight.NORMAL, 14));
+        lDireccion.setStyle("-fx-text-fill: white");
         Label lContador = new Label("mostrando n segundos...");
+        lContador.setFont(Font.font("Arial", FontWeight.NORMAL, 14));
+        lContador.setStyle("-fx-text-fill: white");
 
         //Creamos el boton para poder cerrar la ventana.
         Button btnCerrar = new Button("Cerrar");
+        btnCerrar.setStyle("-fx-background-color:  #4673db; -fx-text-fill: white");
+        btnCerrar.setFont(Font.font("Arial", FontWeight.BOLD, 14));
 
         //Creamos los contenedores que contengan los label y boton. 
         VBox info = new VBox(lNombre, lDireccion);
@@ -111,19 +123,20 @@ public class UbicacionesController implements Initializable {
         VBox popUp = new VBox(info, control);
 
         //Agregamos proiedades a los contenedores
-        popUp.setPrefSize(350, 150);
+        popUp.setPrefSize(400, 150);
         info.setPrefHeight(75);
         info.setAlignment(Pos.BOTTOM_LEFT);
         info.setPadding(new Insets(25, 25, 0, 25));
         control.setPrefHeight(75);
         control.setPadding(new Insets(25));
-        control.setSpacing(110);
-        popUp.setStyle("-fx-background-color: #73d2ff");
+        control.setSpacing(130);
+        popUp.setStyle("-fx-background-color: #2171aa");
 
         Scene scene = new Scene(popUp);
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setResizable(false);
+        //setIcono(stage);
         stage.show();
 
         //Cerrarmos la ventana cuando detecte la accion en el boton.

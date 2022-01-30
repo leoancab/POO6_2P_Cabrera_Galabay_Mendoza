@@ -5,6 +5,7 @@
  */
 package com.pooespol.proyecto_poo_2p;
 
+import static com.pooespol.proyecto_poo_2p.VithasLabsApp.setIcono;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,12 +27,9 @@ import javafx.stage.Stage;
 public class OpcionesController implements Initializable {
 
     @FXML
-    private VBox root;
-    @FXML
     private Label l_bienvenida;
-
-  
-   
+    @FXML
+    private VBox root;
 
     /**
      * Initializes the controller class.
@@ -43,7 +41,7 @@ public class OpcionesController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         VithasLabsApp.fondo("fondoPaciente", ".jpg", root);
         String nombres = InicioSesionController.pacienteLogin.getNombres();
-        
+        l_bienvenida.setText("Bienvenido " + nombres);
     }
 
     @FXML
@@ -52,6 +50,9 @@ public class OpcionesController implements Initializable {
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
         Stage stage = new Stage();
+        stage.setTitle("Vithas Labs - Conoce Nuestras Ubicaciones");
+        stage.setResizable(false);
+        setIcono(stage);
         stage.setScene(scene);
         stage.show();
     }
@@ -62,10 +63,11 @@ public class OpcionesController implements Initializable {
         Parent root1 = fxmlLoader.load();
         Scene scene1 = new Scene(root1);
         Stage stage2 = new Stage();
+        stage2.setTitle("Vithas Labs - Agendar Prueba");
         stage2.setScene(scene1);
+        stage2.setResizable(false);
+        setIcono(stage2);
         stage2.show();
     }
 
-    
 }
-  
