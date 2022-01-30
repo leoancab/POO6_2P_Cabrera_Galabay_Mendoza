@@ -28,7 +28,11 @@ public class VithasLabsApp extends Application {
     public static String pathImg = "src/main/resources/Imagenes/";
     public static ArrayList<Usuario> usuarios = new ArrayList<>();
     public static ArrayList<Paciente> pacientes = new ArrayList<>();
-
+    /**
+     * Se carga la escena y se realizan los ajustes a la ventana.
+     * @param stage
+     * @throws IOException 
+     */
     @Override
     public void start(Stage stage) throws IOException {
         
@@ -43,7 +47,12 @@ public class VithasLabsApp extends Application {
         stage.setResizable(false);
         stage.show();
     }
-
+    
+    /**
+     * Permite cmabiar la escena de la vetana inicial de la App.
+     * @param fxml
+     * @throws IOException 
+     */
     static void setRoot(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(VithasLabsApp.class.getResource(fxml + ".fxml"));
         scene.setRoot(fxmlLoader.load());
@@ -54,7 +63,13 @@ public class VithasLabsApp extends Application {
         generarPacientes(pathFile + "pacientes.txt");
         launch();
     }
-
+    
+    /**
+     * Agrega una iamgen de fondo al contenedor.
+     * @param imagen nombre de la imagen
+     * @param formato tipo de formato
+     * @param root tipo de contendor
+     */
     public static void fondo(String imagen, String formato, Pane root) {
         try (FileInputStream input = new FileInputStream(VithasLabsApp.pathImg + imagen + formato)) {
             
@@ -68,6 +83,10 @@ public class VithasLabsApp extends Application {
         }
     }
     
+    /**
+     * Agrega el icono a la vetana
+     * @param stage ventana a la que se le agregara el icono.
+     */
     public static void setIcono(Stage stage) {
         try (FileInputStream fis = new FileInputStream(pathImg + "icono.png")) {
             Image img = new Image(fis);

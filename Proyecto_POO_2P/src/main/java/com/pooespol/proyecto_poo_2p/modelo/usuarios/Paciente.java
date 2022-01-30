@@ -118,6 +118,11 @@ public class Paciente {
         return "Paciente{" + "usuario=" + usuario + ", cedula=" + cedula + ", nombres=" + nombres + ", apellidos=" + apellidos + ", fechaNacimiento=" + fechaNacimiento + ", genero=" + genero + ", ciudad=" + ciudad + ", email=" + email + ", telefono=" + telefono + '}';
     }
     
+    /**
+     * Lee el registro de pacientes y genera una lista de pacientes
+     * y los guarda en una variable estatica de la clase controller.
+     * @param nomArchivo 
+     */
     public static void generarPacientes(String nomArchivo) {
         ArrayList<Paciente> pacientesL = new ArrayList();
         BufferedReader br = null;

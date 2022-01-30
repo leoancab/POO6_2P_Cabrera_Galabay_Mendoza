@@ -2,3 +2,4 @@ cgalabay,12345678,P
 leoancab,qwerty,P
 martin,1234,L
 Carol,123,P
+mcfreire,12345678,P

@@ -56,6 +56,11 @@ public class Usuario {
         return "Usuario{" + "usuario=" + usuario + ", contrase\u00f1a=" + contraseña + ", TipoUsuario=" + tipoUsuario + '}';
     }
     
+    /**
+     * Lee el registro de usuarios y genera una lista de usuarios
+     * y los guarda en una variable estatica de la clase controller.
+     * @param nomArchivo 
+     */
     public static void generarUsuarios(String nomArchivo) {
         ArrayList<Usuario> usuariosL = new ArrayList();
         BufferedReader br = null;

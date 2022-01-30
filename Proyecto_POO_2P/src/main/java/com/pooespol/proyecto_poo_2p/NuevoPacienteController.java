@@ -6,9 +6,11 @@
 package com.pooespol.proyecto_poo_2p;
 
 import static com.pooespol.proyecto_poo_2p.VithasLabsApp.pathFile;
-import com.pooespol.proyecto_poo_2p.modelo.ArchivoRW;
 import static com.pooespol.proyecto_poo_2p.modelo.usuarios.Paciente.generarPacientes;
 import static com.pooespol.proyecto_poo_2p.modelo.usuarios.Usuario.generarUsuarios;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -31,7 +33,7 @@ import javafx.scene.text.Font;
  *
  * @author cgala
  */
-public class NuevoPacienteController extends ArchivoRW implements Initializable {
+public class NuevoPacienteController implements Initializable {
 
     @FXML
     private Button btn_Registrar;
@@ -87,7 +89,12 @@ public class NuevoPacienteController extends ArchivoRW implements Initializable 
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-
+    
+    /**
+     * Escribe el resgistro con la información recibida en el formulario
+     * en la ventana de registro de paciente.
+     * @param event 
+     */
     @FXML
     private void registarPaciente(ActionEvent event) {
         //Obtenemos los valores para 
@@ -149,4 +156,24 @@ public class NuevoPacienteController extends ArchivoRW implements Initializable 
             
         }
     }
+    
+    /**
+     * Permite escribir una line de texto en un archivo
+     * @param nomArchivo Nombre del archivo con su extension.
+     * @param txt Cadena de caracteres que seran escritos en el archivo
+     */
+    public static void escribir(String nomArchivo, String txt){
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        try{
+            fw = new FileWriter(nomArchivo, true);
+            bw = new BufferedWriter(fw);
+            bw.write(txt + "\n");
+            bw.close();
+            System.out.println("Escribiendo...");
+        } catch (IOException e) {
+            System.out.println("Error...");
+        }
+    }
+    
 }

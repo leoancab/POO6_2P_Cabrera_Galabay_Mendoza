@@ -1,1 +1,0 @@
-moduleSearchIndex = [{"l":"com.pooespol.proyecto_poo_2p"}]

@@ -40,7 +40,12 @@ public class InicioSesionController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
     }
-
+    
+    /**
+     * Abre una nueva ventana para poder crear una nueva cuenta de paciente
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void crearNuevaCuenta(MouseEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(VithasLabsApp.class.getResource("nuevoPaciente.fxml"));
@@ -55,7 +60,13 @@ public class InicioSesionController implements Initializable {
         stage.show();
 
     }
-
+    
+    /**
+     * Permite iniciar sesion en caso de que el usuario y contraseña ingresados
+     * sea correcto.
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void iniciarSesion(ActionEvent event) throws IOException {
         String usuario = txt_Usuario.getText();
@@ -74,7 +85,14 @@ public class InicioSesionController implements Initializable {
             l_mensaje.setFont(new Font("Arial", 14));
         }
     }
-
+    
+    /**
+     * Permite verificar si el usuario y contraseña ingresados son correctos.
+     * @param usuario Un string que corresponde al usuario de la persona
+     * @param password Cntraseña que corresponde al mimso usuario ingresado
+     * @return Retorna true en caso de ser correctos los datos ingresado,
+     * caso contraio retorna false
+     */
     private static boolean validarUsuario(String usuario, String password) {
         ArrayList<Usuario> users = VithasLabsApp.usuarios;
         for (Usuario u : users) {
@@ -88,7 +106,12 @@ public class InicioSesionController implements Initializable {
         }
         return false;
     }
-
+    
+    /**
+     * Genera al paciente que al que le corresponda el Usuario que recibio.
+     * @param u Un usuario que se encuentra en los registros
+     * @param listaP Lista de pacientes que se encuentran en un registro solo de pacientes
+     */
     private static void generarPaciente(Usuario u, ArrayList<Paciente> listaP) {
         for (Paciente p : listaP) {
             if (p.getUsuario().equals(u.getUsuario())) {
