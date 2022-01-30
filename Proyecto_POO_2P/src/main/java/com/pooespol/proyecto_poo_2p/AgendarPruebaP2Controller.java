@@ -65,6 +65,8 @@ public class AgendarPruebaP2Controller implements Initializable {
 
     @FXML
     private Pane rootMapa;
+    
+    private int control = -1;
 
     /**
      * Initializes the controller class.
@@ -170,11 +172,14 @@ public class AgendarPruebaP2Controller implements Initializable {
                 System.out.println("Fecha no posible, escoga otra");
                 lbAdvertencia.setText("Fecha no posible, escoga otra");
             } else {
+                control += 1;
                 lbAdvertencia.setText("");
                 escribirContrataciones();
                 escribirDetalles();
                 mostrarVentanaInfo();
+                if (control <= 0) {
                 enviarConGMail(pacienteLogin.getEmail());
+                }
                 System.out.println(pruebasSolicitadas);
             }
         } catch (CamposIncompletosException e) {
@@ -231,5 +236,6 @@ public class AgendarPruebaP2Controller implements Initializable {
         t.setDaemon(true);
         t.start();
     }
-    
 }
+    
+

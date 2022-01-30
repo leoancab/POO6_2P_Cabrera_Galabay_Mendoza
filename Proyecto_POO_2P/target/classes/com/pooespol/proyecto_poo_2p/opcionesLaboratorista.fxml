@@ -48,6 +48,11 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Label fx:id="Mensaje" textFill="RED">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
          </children>
          <padding>
             <Insets bottom="50.0" left="50.0" right="50.0" top="30.0" />

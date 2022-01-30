@@ -4,6 +4,7 @@
  */
 package com.pooespol.proyecto_poo_2p;
 
+import static com.pooespol.proyecto_poo_2p.VithasLabsApp.setIcono;
 import com.pooespol.proyecto_poo_2p.modelo.Prueba;
 import com.pooespol.proyecto_poo_2p.modelo.TipoPrueba;
 import java.io.BufferedReader;
@@ -192,6 +193,9 @@ public class AgendarPruebaController implements Initializable {
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
         Stage stage = new Stage();
+        setIcono(stage);
+        stage.setTitle("Vithas Labs - Agende Su Cita");
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
