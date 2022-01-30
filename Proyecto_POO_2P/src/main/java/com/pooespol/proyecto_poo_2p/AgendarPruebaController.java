@@ -99,7 +99,7 @@ public class AgendarPruebaController implements Initializable {
         }
     }
 
-    /*Lee el archivo de pruebas y gerera la lista de pruebas
+    /*Lee el archivo de pruebas, genera la lista de pruebas
     y retorna la lista de pruebas.*/
     public ArrayList<Prueba> crearPruebas() {
         ArrayList<Prueba> pruebas = new ArrayList<>();

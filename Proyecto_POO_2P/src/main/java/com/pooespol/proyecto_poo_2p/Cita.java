@@ -11,6 +11,7 @@ import java.io.Serializable;
  *
  * @author cgala
  */
+//Se crea un tipo de objeto para las citas
 public class Cita implements Serializable, Comparable<Cita> {
 
     private String nombres;
@@ -24,7 +25,7 @@ public class Cita implements Serializable, Comparable<Cita> {
         this.fechas = fechas;
         this.nroSolicitud = nroSolicitud;
     }
-
+    //Metodos getters y setters
     public String getNombres() {
         return nombres;
     }
@@ -61,10 +62,9 @@ public class Cita implements Serializable, Comparable<Cita> {
     public String toString() {
         return "Cita{" + "nombres=" + nombres + ", apellidos=" + apellidos + ", fechas=" + fechas + ", nroSolicitud=" + nroSolicitud + '}';
     }
-
+    //Sobreescribimos el metodo compareTo para que ubique los nombres en orden
     @Override
     public int compareTo(Cita o) {
         return nombres.compareTo(o.getNombres());
-        
     }
 }
