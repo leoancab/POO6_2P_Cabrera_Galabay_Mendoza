@@ -84,8 +84,8 @@ public class OpcionesLaboratoristaController implements Initializable {
 
             Stage s = new Stage();
             FXMLLoader fx = new FXMLLoader(VithasLabsApp.class.getResource("consultaCitas.fxml"));
-            Parent root = fx.load();
-            Scene sc = new Scene(root);
+            Parent root1 = fx.load();
+            Scene sc = new Scene(root1);
             s.setScene(sc);
             s.show();
 

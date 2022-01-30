@@ -6,7 +6,9 @@
 package com.pooespol.proyecto_poo_2p;
 
 import static com.pooespol.proyecto_poo_2p.OpcionesLaboratoristaController.citasS;
+import static com.pooespol.proyecto_poo_2p.VithasLabsApp.setIcono;
 import java.net.URL;
+import java.util.Collections;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -40,27 +42,40 @@ public class ConsultaCitasController implements Initializable {
     
     private ObservableList<Cita> citas = FXCollections.observableArrayList(citasS);
     
+    @FXML
+    private Button btnCerrar;
     
+    private Stage stage;
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        nombres.setCellValueFactory(new PropertyValueFactory<Cita, String>("nombres"));
-        
-        apellidos.setCellValueFactory(new PropertyValueFactory<Cita, String>("apellidos"));
-        
-        fecha.setCellValueFactory(new PropertyValueFactory<Cita, String>("fechas"));
-        
-        solicitud.setCellValueFactory(new PropertyValueFactory<Cita, String>("nroSolicitud"));
-        
+        nombres.setCellValueFactory(new PropertyValueFactory<>("nombres"));
+        nombres.setMinWidth(150);
+        nombres.setStyle("-fx-alignment: center");
+        apellidos.setCellValueFactory(new PropertyValueFactory<>("apellidos"));
+        apellidos.setMinWidth(150); 
+        apellidos.setStyle("-fx-alignment: center");
+        fecha.setCellValueFactory(new PropertyValueFactory<>("fechas"));
+        fecha.setMaxWidth(79); 
+        fecha.setStyle("-fx-alignment: center");
+        solicitud.setCellValueFactory(new PropertyValueFactory<>("nroSolicitud"));
+        solicitud.setMaxWidth(79); 
+        solicitud.setStyle("-fx-alignment: center");
+        Collections.sort(citas);
         tablaDatos.setItems(citas);
+        
+        
     }    
 
     @FXML
-    private void cerrar(ActionEvent event) {
-        
+    private void cerrarVentana(ActionEvent event) {
+        stage = (Stage) btnCerrar.getScene().getWindow();
+        stage.close();
     }
     
 //    public ObservableList<Cita> obtenerCitas() {

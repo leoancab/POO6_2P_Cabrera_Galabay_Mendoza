@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author cgala
  */
-public class Cita implements Serializable {
+public class Cita implements Serializable, Comparable<Cita> {
 
     private String nombres;
     private String apellidos;
@@ -60,5 +60,11 @@ public class Cita implements Serializable {
     @Override
     public String toString() {
         return "Cita{" + "nombres=" + nombres + ", apellidos=" + apellidos + ", fechas=" + fechas + ", nroSolicitud=" + nroSolicitud + '}';
+    }
+
+    @Override
+    public int compareTo(Cita o) {
+        return nombres.compareTo(o.getNombres());
+        
     }
 }

@@ -6,6 +6,7 @@
 package com.pooespol.proyecto_poo_2p;
 
 import static com.pooespol.proyecto_poo_2p.VithasLabsApp.setIcono;
+import com.pooespol.proyecto_poo_2p.modelo.usuarios.Genero;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -41,7 +42,13 @@ public class OpcionesController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         VithasLabsApp.fondo("fondoPaciente", ".jpg", root);
         String nombres = InicioSesionController.pacienteLogin.getNombres();
-        l_bienvenida.setText("Bienvenido " + nombres);
+        Genero genero = InicioSesionController.pacienteLogin.getGenero();
+        if (genero.equals(Genero.Masculino))
+            l_bienvenida.setText("Bienvenido " + nombres);
+        else if (genero.equals(Genero.Femenino))
+            l_bienvenida.setText("Bienvenida " + nombres);
+        else
+            l_bienvenida.setText("Bienvenid@ " + nombres);
     }
 
     @FXML
