@@ -5,30 +5,17 @@
  */
 package com.pooespol.proyecto_poo_2p;
 
-import static com.pooespol.proyecto_poo_2p.InicioSesionController.pacienteLogin;
-import com.pooespol.proyecto_poo_2p.modelo.Prueba;
-import com.pooespol.proyecto_poo_2p.modelo.usuarios.Genero;
 import com.pooespol.proyecto_poo_2p.modelo.usuarios.Paciente;
-import com.pooespol.proyecto_poo_2p.modelo.usuarios.Usuario;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import java.util.ArrayList;
-import java.util.Date;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -57,10 +44,12 @@ public class OpcionesLaboratoristaController implements Initializable {
     @FXML
     private Button btnConsultarCitas;
     
-    public static ArrayList<Cita> citasS;
+    //public static ArrayList<Cita> citasS;
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -68,19 +57,18 @@ public class OpcionesLaboratoristaController implements Initializable {
         String userLab = InicioSesionController.userLogin.getUsuario();
         l_bienvenida.setText("Bienvenido " + userLab);
     }
-
-//    private void MensajeAlerta(ActionEvent event) {
-//
-//        File arch = new File(VithasLabsApp.pathFile + "PacientesCita.txt");
-//        if (arch.length() == 0) {
-//            Mensaje.setText("Debe generar el consolidado antes de consultar");
-//        }
-//    }
+    
+    /**
+     * Abre una nueva ventana para poder ver todas las citas agendadas
+     * por los pacientes siempre y cuando se haya consolidado el archivo antes.
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void consultarCitas(ActionEvent event) throws IOException {
         File archivo = new File(VithasLabsApp.pathFile + "pruebasSolicitadas.xd");
         System.out.println(archivo.exists());
-        if (archivo.exists() && citasS != null) {
+        if (archivo.exists()) {
 
             Stage s = new Stage();
             FXMLLoader fx = new FXMLLoader(VithasLabsApp.class.getResource("consultaCitas.fxml"));
@@ -94,7 +82,13 @@ public class OpcionesLaboratoristaController implements Initializable {
         }
 
     }
-
+    
+    /**
+     * Genera un paciente segun el usuario ingresado.
+     * @param u String usuario
+     * @param listaP Lsita de pacientes
+     * @return Retrna al paciente que corresponda ese usuario
+     */
     private static Paciente generarPaciente(String u, ArrayList<Paciente> listaP) {
         Paciente paciente = null;
         for (Paciente p : listaP) {
@@ -105,6 +99,10 @@ public class OpcionesLaboratoristaController implements Initializable {
         return paciente;
     }
 
+    /**
+     * Serializa Una lista de Citas para pode consultar esos datos después.
+     * @param event 
+     */
     @FXML
     private void serializarCitas(ActionEvent event) {
 
@@ -114,7 +112,7 @@ public class OpcionesLaboratoristaController implements Initializable {
 
         //Guardas los nombres que contrataron el servicio en la lista lUsuarios
         try {
-            FileReader fr = new FileReader(VithasLabsApp.pathFile + "ContratacionesPruebas.txt");
+            FileReader fr = new FileReader(VithasLabsApp.pathFile + "contratacionesPruebas.txt");
             BufferedReader bf = new BufferedReader(fr);
             String linea;
 
@@ -124,10 +122,11 @@ public class OpcionesLaboratoristaController implements Initializable {
 
                 Paciente p = generarPaciente(info[1], VithasLabsApp.pacientes);
                 //p.getNombres();
+                System.out.println(p);
                 Cita c = new Cita(p.getNombres(), p.getApellidos(), info[3], info[0]);
                 citas.add(c);
             }
-            citasS = citas;
+            //citasS = citas;
         } catch (IOException e) {
             System.out.println("No se ha podido leer el archivo");
         }

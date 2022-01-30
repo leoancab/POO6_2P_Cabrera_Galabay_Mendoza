@@ -53,7 +53,10 @@ public class UbicacionesController implements Initializable {
         VithasLabsApp.fondo("mapa", ".png", root);
         mostrarLocales();
     }
-
+    
+    /**
+     * Muestra los loclaes en un nuevo hilo.
+     */
     public void mostrarLocales() {
         Thread hilo1 = new Thread(new Runnable() {
             @Override
@@ -64,7 +67,10 @@ public class UbicacionesController implements Initializable {
         hilo1.setDaemon(true);
         hilo1.start();
     }
-
+    
+    /**
+     * Crear una imagen para visualizar la ubicación de loslocales en el mapa.
+     */
     private void ubicarLocales() {
         ArrayList<Local> locales = Local.obtenerLocal();
         for (Local l : locales) {
@@ -160,7 +166,12 @@ public class UbicacionesController implements Initializable {
         t.setDaemon(true);
         t.start();
     }
-
+    
+    /**
+     * Actuliza del texto de label del label
+     * @param stage ventana a la que se le va a aplicar 
+     * @param contador Label que se va a actulizar 
+     */
     private void setInfoVentana(Stage stage, Label contador) {
         for (int i = 5; i > 0; i--) {
             String status = "Mostrando " + i + " segundos...";

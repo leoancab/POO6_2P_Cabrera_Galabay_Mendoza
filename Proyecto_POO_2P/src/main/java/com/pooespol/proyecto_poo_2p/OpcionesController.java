@@ -50,7 +50,12 @@ public class OpcionesController implements Initializable {
         else
             l_bienvenida.setText("Bienvenid@ " + nombres);
     }
-
+    
+    /**
+     * Abre una nueva ventana que muestras en un mapa las ubicaciones
+     * de las sucursales.
+     * @throws IOException 
+     */
     @FXML
     private void verSucursales() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(VithasLabsApp.class.getResource("ubicaciones.fxml"));
@@ -63,7 +68,11 @@ public class OpcionesController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
+    
+    /**
+     * Abre una ventana que permite seleccionar las pruebas que desea comprar.
+     * @throws IOException 
+     */
     @FXML
     private void pruebaDomicilio() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(VithasLabsApp.class.getResource("agendarPrueba.fxml"));

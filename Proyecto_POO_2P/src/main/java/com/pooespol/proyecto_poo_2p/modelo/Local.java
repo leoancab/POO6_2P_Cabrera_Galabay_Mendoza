@@ -71,6 +71,10 @@ public class Local {
         this.cordY = cordY;
     }
 
+    /**
+     * Obtiene los locales que se encunetran en un registro de locales.
+     * @return Retorna una lista de locales
+     */
     public static ArrayList<Local> obtenerLocal() {
         ArrayList<Local> locales = new ArrayList<>();
         BufferedReader br = null;

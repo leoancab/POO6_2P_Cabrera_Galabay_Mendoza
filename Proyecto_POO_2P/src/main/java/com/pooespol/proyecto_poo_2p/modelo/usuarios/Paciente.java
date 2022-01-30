@@ -120,8 +120,7 @@ public class Paciente {
     
     /**
      * Lee el registro de pacientes y genera una lista de pacientes
-     * y los guarda en una variable estatica de la clase controller.
-     * @param nomArchivo 
+     * y los guarda en una variable estatica de la clase controller.     
      */
     public static void generarPacientes(String nomArchivo) {
         ArrayList<Paciente> pacientesL = new ArrayList();

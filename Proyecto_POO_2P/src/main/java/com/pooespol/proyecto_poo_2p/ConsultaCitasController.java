@@ -5,11 +5,16 @@
  */
 package com.pooespol.proyecto_poo_2p;
 
-import static com.pooespol.proyecto_poo_2p.OpcionesLaboratoristaController.citasS;
 import static com.pooespol.proyecto_poo_2p.VithasLabsApp.setIcono;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -40,7 +45,7 @@ public class ConsultaCitasController implements Initializable {
     @FXML
     private TableColumn<Cita, String> solicitud;
     
-    private ObservableList<Cita> citas = FXCollections.observableArrayList(citasS);
+    private ObservableList<Cita> citas = FXCollections.observableArrayList(obtenerCitas());
     
     @FXML
     private Button btnCerrar;
@@ -71,20 +76,31 @@ public class ConsultaCitasController implements Initializable {
         
         
     }    
-
+    
+    /**
+     * Permite cerrar la ventana
+     * @param event 
+     */
     @FXML
     private void cerrarVentana(ActionEvent event) {
         stage = (Stage) btnCerrar.getScene().getWindow();
         stage.close();
     }
     
-//    public ObservableList<Cita> obtenerCitas() {
-//        ObservableList<Cita> citas = FXCollections.observableArrayList();
-//        for (Cita c: citasS) {
-//            citas.add(c);
-//        }
-//        System.out.println("Lista Citas: " + citas);
-//        return citas;
-//    }
-//    
+    /**
+     * Obtiene la lista de citas del archivo serializado.
+     * @return Retorna unalista de citas
+     */
+    private ArrayList<Cita> obtenerCitas() {
+        ArrayList<Cita> citasSolicitadas = new ArrayList<>();
+         try (ObjectInputStream salida = new ObjectInputStream(new FileInputStream(VithasLabsApp.pathFile + "pruebasSolicitadas.xd"))) {
+            citasSolicitadas = (ArrayList<Cita>) salida.readObject();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ConsultaCitasController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return citasSolicitadas;
+    }
+    
 }

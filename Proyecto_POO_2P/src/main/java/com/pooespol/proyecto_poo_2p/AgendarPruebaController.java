@@ -91,7 +91,10 @@ public class AgendarPruebaController implements Initializable {
             }
         }
     }
-
+    
+    /**
+     * Muestra el precio del producto en pantlla.
+     */
     private void setPrecioLabl() {
         Prueba p = cbPrueba.getSelectionModel().getSelectedItem();
         if (p != null) {
@@ -99,8 +102,11 @@ public class AgendarPruebaController implements Initializable {
         }
     }
 
-    /*Lee el archivo de pruebas y gerera la lista de pruebas
-    y retorna la lista de pruebas.*/
+    /**
+     * Lee el archivo de pruebas, genera la lista de pruebas
+     * y retorna la lista de pruebas.
+     * @return Retorna las pruebas disponibles en el registro
+     */
     public ArrayList<Prueba> crearPruebas() {
         ArrayList<Prueba> pruebas = new ArrayList<>();
 
@@ -129,7 +135,10 @@ public class AgendarPruebaController implements Initializable {
         return pruebas;
     }
 
-    /*Se agregan */
+    /**
+     * Se agregan las citas en el gripPane 
+     * @return Retorna una lista de pruebas que seran registradas en un archivo
+     */
     @FXML
     public ArrayList<Prueba> agregarCita() {
         String cantidad = tfCantidad.getText();
@@ -188,7 +197,11 @@ public class AgendarPruebaController implements Initializable {
         }
         return pruebasCita;
     }
-
+    
+    /**
+     * Se abre una nueva ventna para continuar con el proceso de compra.
+     * @throws IOException 
+     */
     @FXML
     public void continuar() throws IOException {
         System.out.println(pruebasCita);

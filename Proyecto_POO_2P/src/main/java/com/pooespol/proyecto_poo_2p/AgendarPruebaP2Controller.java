@@ -77,11 +77,14 @@ public class AgendarPruebaP2Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         VithasLabsApp.fondo("mapa", ".png", rootMapa);
-        ArrayList<Prueba> pruebasCita = AgendarPruebaController.pruebasCita;
+        //ArrayList<Prueba> pruebasCita = AgendarPruebaController.pruebasCita;
         ubicarPin();
         cbHora.getItems().addAll("07:00", "08:00", "09:00", "10:00", "11:00", "12:00");
     }
-
+    
+    /**
+     * Ubica un Pin en donde el usuario de click dentro de la imagen del mapa.
+     */
     public void ubicarPin() {
         rootMapa.setOnMouseClicked((MouseEvent t) -> {
             rootMapa.getChildren().clear();
@@ -101,7 +104,11 @@ public class AgendarPruebaP2Controller implements Initializable {
             }
         });
     }
-
+    
+    /**
+     * Crea un ID de 6 digitos para cada solicitud de compra.
+     * @return Retora un ID de 6 digitos como String
+     */
     public String crearIdSolicitud() {
         String id = "";
         for (int i = 0; i < 6; i++) {
@@ -110,7 +117,12 @@ public class AgendarPruebaP2Controller implements Initializable {
         }
         return id;
     }
-
+    
+    /**
+     * Este metodo escribe un archivo de las contrataciones con la información 
+     * de la compra por medio de la informacion ingresada por le usuario en 
+     * la ventana.
+     */
     public void escribirContrataciones() {
         FileWriter fw = null;
         BufferedWriter bw = null;
@@ -127,7 +139,11 @@ public class AgendarPruebaP2Controller implements Initializable {
             System.out.println("Error...");
         }
     }
-
+    
+    /**
+     * Escribe los detalles de la compra en otro Archivo que contiene
+     * el registro de compras hechos por los usuarios.
+     */
     public void escribirDetalles() {
         BufferedReader br = null;
         FileReader fr = null;
@@ -145,7 +161,11 @@ public class AgendarPruebaP2Controller implements Initializable {
             System.out.println("Error...");
         }
     }
-
+    
+    /**
+     * Abre la ventana emergente que informa al usuario sobre el correo enviado.
+     * @throws IOException 
+     */
     public void mostrarVentanaInfo() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(VithasLabsApp.class.getResource("informacionFinal.fxml"));
         Parent root = fxmlLoader.load();
@@ -155,7 +175,12 @@ public class AgendarPruebaP2Controller implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
+    
+    /**
+     * Verifica que no haya campos vacios, si todo esta bien escribira 
+     * los archivos y enviara un correo con la información de la compra.
+     * @throws IOException 
+     */
     @FXML
     public void finalizar() throws IOException {
         String direccion = tfDireccion.getText();
@@ -187,7 +212,11 @@ public class AgendarPruebaP2Controller implements Initializable {
             lbAdvertencia.setText("Campos incompletos, no se puede agregar.");
         }
     }
-
+    
+    /**
+     * Envia el correo con un formato ya definido y la información de la compra.
+     * @param correoReceptor Correo del Pacinete que solicito las pruebas
+     */
     private void enviarConGMail(String correoReceptor) {
         Thread t = new Thread(new Runnable() {
             @Override
