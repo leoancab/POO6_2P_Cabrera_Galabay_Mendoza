@@ -24,9 +24,9 @@
       <TableView fx:id="tablaDatos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="162.0" prefWidth="474.0">
         <columns>
           <TableColumn fx:id="nombres" prefWidth="114.39996182918549" text="Nombres" />
-          <TableColumn fx:id="apellidos" prefWidth="116.80005645751953" text="Apellidos" />
-            <TableColumn fx:id="fecha" prefWidth="108.800048828125" text="Fecha" />
-            <TableColumn fx:id="solicitud" minWidth="1.59991455078125" prefWidth="136.00006103515625" text="No. solicitud" />
+          <TableColumn fx:id="apellidos" prefWidth="116.80005645751953" sortType="DESCENDING" text="Apellidos" />
+            <TableColumn fx:id="fecha" prefWidth="108.800048828125" sortType="DESCENDING" text="Fecha" />
+            <TableColumn fx:id="solicitud" minWidth="1.59991455078125" prefWidth="136.00006103515625" sortType="DESCENDING" text="No. solicitud" />
         </columns>
          <opaqueInsets>
             <Insets />
