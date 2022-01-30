@@ -125,7 +125,7 @@ public class OpcionesLaboratoristaController implements Initializable {
             salida.writeObject(pacientesConCitas);
 
         } catch (IOException e) {
-
+            System.out.println("Error al serealizar...");
         }
 
     }
