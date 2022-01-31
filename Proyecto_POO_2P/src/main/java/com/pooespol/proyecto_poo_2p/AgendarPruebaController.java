@@ -53,6 +53,7 @@ public class AgendarPruebaController implements Initializable {
     private double subtotal = 0;
     public static ArrayList<Prueba> pruebasCita = new ArrayList<>();
     public static double totalPagar;
+    private int control = 0;
 
     /**
      * Initializes the controller class.
@@ -141,6 +142,7 @@ public class AgendarPruebaController implements Initializable {
      */
     @FXML
     public ArrayList<Prueba> agregarCita() {
+        control += 1;
         String cantidad = tfCantidad.getText();
         String tipo = cbTipo.getSelectionModel().getSelectedItem();
         Prueba prueba = cbPrueba.getSelectionModel().getSelectedItem();
@@ -204,6 +206,7 @@ public class AgendarPruebaController implements Initializable {
      */
     @FXML
     public void continuar() throws IOException {
+        if (control >= 1) {
         System.out.println(pruebasCita);
         FXMLLoader fxmlLoader = new FXMLLoader(VithasLabsApp.class.getResource("agendarPruebaP2.fxml"));
         Parent root = fxmlLoader.load();
@@ -214,5 +217,8 @@ public class AgendarPruebaController implements Initializable {
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
+        } else {
+            lbAdvertencia.setText("No ha agregado ninguna compra aún");
+        }
     }
 }

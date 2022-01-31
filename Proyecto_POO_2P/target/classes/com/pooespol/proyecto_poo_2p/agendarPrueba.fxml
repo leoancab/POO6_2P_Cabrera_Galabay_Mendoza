@@ -76,7 +76,7 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" layoutX="50.0" layoutY="237.0" prefHeight="50.0" prefWidth="500.0">
                <children>
-                  <Button cache="true" mnemonicParsing="false" onAction="#agregarCita" style="-fx-background-color: blue;" text="Agregar" textFill="WHITE">
+                  <Button cache="true" mnemonicParsing="false" onAction="#agregarCita" style="-fx-background-color: #4673db;" text="Agregar" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -87,7 +87,7 @@
             </HBox>
             <Label fx:id="lbAdvertencia" layoutX="50.0" layoutY="228.0" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="Arial Bold" size="12.0" />
                </font></Label>
          </children>
       </Pane>
