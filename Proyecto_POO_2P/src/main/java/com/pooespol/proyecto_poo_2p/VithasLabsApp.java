@@ -23,9 +23,9 @@ import javafx.scene.layout.Pane;
 
 public class VithasLabsApp extends Application {
 
-    private static Scene scene;
-    public static String pathFile = "src/main/resources/Archivos/";
-    public static String pathImg = "src/main/resources/Imagenes/";
+    public static Scene scene;
+    public static String pathFile = "Archivos/";
+    public static String pathImg = "Imagenes/";
     public static ArrayList<Usuario> usuarios = new ArrayList<>();
     public static ArrayList<Paciente> pacientes = new ArrayList<>();
     /**
@@ -55,7 +55,8 @@ public class VithasLabsApp extends Application {
      */
     static void setRoot(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(VithasLabsApp.class.getResource(fxml + ".fxml"));
-        scene.setRoot(fxmlLoader.load());
+        Parent root = fxmlLoader.load();
+        scene.setRoot(root);
     }
 
     public static void main(String[] args) {

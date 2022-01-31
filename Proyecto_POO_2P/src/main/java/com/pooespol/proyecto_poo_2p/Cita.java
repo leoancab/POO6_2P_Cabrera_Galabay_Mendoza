@@ -8,7 +8,7 @@ package com.pooespol.proyecto_poo_2p;
 import java.io.Serializable;
 
 /**
- *
+ * Clase que contiene la información de las citas reservadas por los usuarios.
  * @author cgala
  */
 //Se crea un tipo de objeto para las citas

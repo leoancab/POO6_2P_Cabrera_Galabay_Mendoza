@@ -19,9 +19,9 @@
    <children>
       <HBox alignment="CENTER" prefHeight="107.0" prefWidth="560.0" spacing="20.0">
          <children>
-            <ImageView fitHeight="140.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="logo" fitHeight="140.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Imagenes/nuevoLogo.png" />
+                  <Image url="@../../../../../../Imagenes/nuevoLogo.png" />
                </image>
             </ImageView>
             <Label prefHeight="73.0" prefWidth="284.0" text="Vithas Labs" textFill="#4673db">

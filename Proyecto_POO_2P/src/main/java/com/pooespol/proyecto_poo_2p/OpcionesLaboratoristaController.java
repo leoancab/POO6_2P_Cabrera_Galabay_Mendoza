@@ -5,6 +5,7 @@
  */
 package com.pooespol.proyecto_poo_2p;
 
+import static com.pooespol.proyecto_poo_2p.VithasLabsApp.setIcono;
 import com.pooespol.proyecto_poo_2p.modelo.usuarios.Paciente;
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,6 +17,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -71,8 +74,11 @@ public class OpcionesLaboratoristaController implements Initializable {
         if (archivo.exists()) {
 
             Stage s = new Stage();
+            setIcono(s);
+            s.setTitle("Vithas Labs - Consultar Citas");
             FXMLLoader fx = new FXMLLoader(VithasLabsApp.class.getResource("consultaCitas.fxml"));
             Parent root1 = fx.load();
+            root1.setStyle("-fx-background-color: linear-gradient(#ffffff 20%, #5239d1 )");
             Scene sc = new Scene(root1);
             s.setScene(sc);
             s.show();
@@ -140,5 +146,21 @@ public class OpcionesLaboratoristaController implements Initializable {
         }
         
         Advertencia.setText("Se ha generado el archivo de Citas");
+    }
+    
+    /**
+     * Regesa a la escena anteorir para poder iniciar sesión con otra cuenta.
+     * @param event 
+     */
+    @FXML
+    private void regresarAlLogin(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(VithasLabsApp.class.getResource("inicioSesion.fxml"));
+            Parent root = fxmlLoader.load();
+            root.setStyle("-fx-background-color: linear-gradient(#ffffff 20%, #5239d1 )");
+            VithasLabsApp.scene.setRoot(root);
+        } catch (IOException ex) {
+            Logger.getLogger(OpcionesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

@@ -1,0 +1,57 @@
+@options
+@packages
+@argfile
+--class-path
+'C:/Users/cgala/.m2/repository/org/openjfx/javafx-controls/13/javafx-controls-13.jar;C:/Users/cgala/.m2/repository/org/openjfx/javafx-graphics/13/javafx-graphics-13.jar;C:/Users/cgala/.m2/repository/org/openjfx/javafx-base/13/javafx-base-13.jar;C:/Users/cgala/.m2/repository/org/openjfx/javafx-fxml/13/javafx-fxml-13.jar;C:/Users/cgala/.m2/repository/javax/activation/activation/1.1/activation-1.1.jar'
+--module-path
+'C:/Users/cgala/Desktop/POO6_2P_Cabrera_Galabay_Mendoza/Proyecto_POO_2P/target/classes;C:/Users/cgala/.m2/repository/org/openjfx/javafx-controls/13/javafx-controls-13-win.jar;C:/Users/cgala/.m2/repository/org/openjfx/javafx-base/13/javafx-base-13-win.jar;C:/Users/cgala/.m2/repository/com/sun/mail/javax.mail/1.6.2/javax.mail-1.6.2.jar;C:/Users/cgala/.m2/repository/org/openjfx/javafx-graphics/13/javafx-graphics-13-win.jar;C:/Users/cgala/.m2/repository/org/openjfx/javafx-fxml/13/javafx-fxml-13-win.jar'
+--patch-module
+com.pooespol.proyecto_poo_2p='C:/Users/cgala/Desktop/POO6_2P_Cabrera_Galabay_Mendoza/Proyecto_POO_2P/src/main/java'
+-encoding
+'UTF-8'
+-protected
+-source
+'11'
+--module-source-path
+'C:/Users/cgala/Desktop/POO6_2P_Cabrera_Galabay_Mendoza/Proyecto_POO_2P/target/site/apidocs/src'
+-author
+-bottom
+'Copyright &#169; 2022. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/cgala/Desktop/POO6_2P_Cabrera_Galabay_Mendoza/Proyecto_POO_2P/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'Proyecto_POO_2P 1.0 API'
+-linkoffline
+'https://docs.oracle.com/en/java/javase/11/docs/api' 'C:/Users/cgala/Desktop/POO6_2P_Cabrera_Galabay_Mendoza/Proyecto_POO_2P/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'Proyecto_POO_2P 1.0 API'
+com.pooespol.proyecto_poo_2p
+'C:/Users/cgala/Desktop/POO6_2P_Cabrera_Galabay_Mendoza/Proyecto_POO_2P/src/main/java/module-info.java'
+C:\Users\cgala\Desktop\POO6_2P_Cabrera_Galabay_Mendoza\Proyecto_POO_2P\target\site\apidocs\allclasses-index.html = 1643595380816
+C:\Users\cgala\Desktop\POO6_2P_Cabrera_Galabay_Mendoza\Proyecto_POO_2P\target\site\apidocs\allclasses.html = 1643595380899
+C:\Users\cgala\Desktop\POO6_2P_Cabrera_Galabay_Mendoza\Proyecto_POO_2P\target\site\apidocs\allpackages-index.html = 1643595380881
+C:\Users\cgala\Desktop\POO6_2P_Cabrera_Galabay_Mendoza\Proyecto_POO_2P\target\site\apidocs\constant-values.html = 1643595380145
+C:\Users\cgala\Desktop\POO6_2P_Cabrera_Galabay_Mendoza\Proyecto_POO_2P\target\site\apidocs\deprecated-list.html = 1643595380892
+C:\Users\cgala\Desktop\POO6_2P_Cabrera_Galabay_Mendoza\Proyecto_POO_2P\target\site\apidocs\element-list = 1643595379979
+C:\Users\cgala\Desktop\POO6_2P_Cabrera_Galabay_Mendoza\Proyecto_POO_2P\target\site\apidocs\help-doc.html = 1643595380939
+C:\Users\cgala\Desktop\POO6_2P_Cabrera_Galabay_Mendoza\Proyecto_POO_2P\target\site\apidocs\index-all.html = 1643595380799
+C:\Users\cgala\Desktop\POO6_2P_Cabrera_Galabay_Mendoza\Proyecto_POO_2P\target\site\apidocs\index.html = 1643595380922
+C:\Users\cgala\Desktop\POO6_2P_Cabrera_Galabay_Mendoza\Proyecto_POO_2P\target\site\apidocs\member-search-index.js = 1643595380790
+C:\Users\cgala\Desktop\POO6_2P_Cabrera_Galabay_Mendoza\Proyecto_POO_2P\target\site\apidocs\member-search-index.zip = 1643595380793
+C:\Users\cgala\Desktop\POO6_2P_Cabrera_Galabay_Mendoza\Proyecto_POO_2P\target\site\apidocs\module-search-index.js = 1643595380770
+C:\Users\cgala\Desktop\POO6_2P_Cabrera_Galabay_Mendoza\Proyecto_POO_2P\target\site\apidocs\module-search-index.zip = 1643595380777
+C:\Users\cgala\Desktop\POO6_2P_Cabrera_Galabay_Mendoza\Proyecto_POO_2P\target\site\apidocs\overview-tree.html = 1643595380551
+C:\Users\cgala\Desktop\POO6_2P_Cabrera_Galabay_Mendoza\Proyecto_POO_2P\target\site\apidocs\package-search-index.js = 1643595380779
+C:\Users\cgala\Desktop\POO6_2P_Cabrera_Galabay_Mendoza\Proyecto_POO_2P\target\site\apidocs\package-search-index.zip = 1643595380782
+C:\Users\cgala\Desktop\POO6_2P_Cabrera_Galabay_Mendoza\Proyecto_POO_2P\target\site\apidocs\script.js = 1643595380978
+C:\Users\cgala\Desktop\POO6_2P_Cabrera_Galabay_Mendoza\Proyecto_POO_2P\target\site\apidocs\search.js = 1643595381096
+C:\Users\cgala\Desktop\POO6_2P_Cabrera_Galabay_Mendoza\Proyecto_POO_2P\target\site\apidocs\serialized-form.html = 1643595380188
+C:\Users\cgala\Desktop\POO6_2P_Cabrera_Galabay_Mendoza\Proyecto_POO_2P\target\site\apidocs\stylesheet.css = 1643595380973
+C:\Users\cgala\Desktop\POO6_2P_Cabrera_Galabay_Mendoza\Proyecto_POO_2P\target\site\apidocs\type-search-index.js = 1643595380785
+C:\Users\cgala\Desktop\POO6_2P_Cabrera_Galabay_Mendoza\Proyecto_POO_2P\target\site\apidocs\type-search-index.zip = 1643595380788

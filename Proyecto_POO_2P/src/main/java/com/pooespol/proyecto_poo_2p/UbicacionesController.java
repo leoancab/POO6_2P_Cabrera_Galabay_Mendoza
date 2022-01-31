@@ -145,7 +145,7 @@ public class UbicacionesController implements Initializable {
         //setIcono(stage);
         stage.show();
 
-        //Cerrarmos la ventana cuando detecte la accion en el boton.
+        //Cerramos la ventana cuando detecte la accion en el boton.
         btnCerrar.setOnAction(e -> stage.close());
 
         //Creamos un hilo.
@@ -168,9 +168,9 @@ public class UbicacionesController implements Initializable {
     }
     
     /**
-     * Actuliza del texto de label del label
+     * Actualiza del texto de label del label
      * @param stage ventana a la que se le va a aplicar 
-     * @param contador Label que se va a actulizar 
+     * @param contador Label que se va a actualizar 
      */
     private void setInfoVentana(Stage stage, Label contador) {
         for (int i = 5; i > 0; i--) {

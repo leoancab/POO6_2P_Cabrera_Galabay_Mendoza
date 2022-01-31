@@ -30,7 +30,7 @@
             <Insets />
          </VBox.margin>
       </VBox>
-      <VBox alignment="TOP_CENTER" prefHeight="320.0" prefWidth="600.0" spacing="50.0">
+      <VBox alignment="TOP_CENTER" prefHeight="366.0" prefWidth="600.0" spacing="50.0">
          <children>
             <Button mnemonicParsing="false" onAction="#verSucursales" prefHeight="35.0" prefWidth="240.0" style="-fx-background-color: #4673db; -fx-text-fill: white;" text="Conoce nuestras ubicaciones">
                <font>
@@ -51,6 +51,18 @@
          </children>
          <padding>
             <Insets bottom="50.0" left="50.0" right="50.0" top="30.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#regresarAlLogin" prefHeight="32.0" style="-fx-background-color: #4673db;" text="Regresar" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+         <padding>
+            <Insets left="20.0" right="20.0" />
          </padding>
       </VBox>
    </children>

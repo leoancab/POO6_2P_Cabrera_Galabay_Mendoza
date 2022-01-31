@@ -4,10 +4,14 @@ import static com.pooespol.proyecto_poo_2p.VithasLabsApp.setIcono;
 import com.pooespol.proyecto_poo_2p.modelo.usuarios.Paciente;
 import com.pooespol.proyecto_poo_2p.modelo.usuarios.TipoUsuario;
 import com.pooespol.proyecto_poo_2p.modelo.usuarios.Usuario;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +22,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -35,10 +41,17 @@ public class InicioSesionController implements Initializable {
     private Button btn_IniciarSesion;
     @FXML
     private Label l_mensaje;
+    @FXML
+    private ImageView logo;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        try(FileInputStream fis = new FileInputStream(VithasLabsApp.pathImg + "nuevoLogo.png")) {
+            Image img = new Image(fis);
+            logo.setImage(img);
+        } catch (IOException ex) {
+            Logger.getLogger(InicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     /**

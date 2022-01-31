@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 /**
  * FXML Controller class
- *
+ * Clase que permite generar una ventana con informacion para el usuario.
  * @author leonel
  */
 public class InformacionFinalController implements Initializable {
